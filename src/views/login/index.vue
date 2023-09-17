@@ -1,11 +1,11 @@
 <template>
   <div class="view-account">
-    <div class="view-account-header"></div>
+    <!-- <div class="view-account-header"></div> -->
     <div class="view-account-container">
       <div class="view-account-top">
-        <div class="view-account-top-logo">
+        <!-- <div class="view-account-top-logo">
           <img :src="websiteConfig.loginImage" alt="" />
-        </div>
+        </div> -->
         <div class="view-account-top-desc">{{ websiteConfig.loginDesc }}</div>
       </div>
       <div class="view-account-form">
@@ -39,44 +39,10 @@
               </template>
             </n-input>
           </n-form-item>
-          <n-form-item class="default-color">
-            <div class="flex justify-between">
-              <div class="flex-initial">
-                <n-checkbox v-model:checked="autoLogin">自动登录</n-checkbox>
-              </div>
-              <div class="flex-initial order-last">
-                <a href="javascript:">忘记密码</a>
-              </div>
-            </div>
-          </n-form-item>
           <n-form-item>
             <n-button type="primary" @click="handleSubmit" size="large" :loading="loading" block>
               登录
             </n-button>
-          </n-form-item>
-          <n-form-item class="default-color">
-            <div class="flex view-account-other">
-              <div class="flex-initial">
-                <span>其它登录方式</span>
-              </div>
-              <div class="flex-initial mx-2">
-                <a href="javascript:">
-                  <n-icon size="24" color="#2d8cf0">
-                    <LogoGithub />
-                  </n-icon>
-                </a>
-              </div>
-              <div class="flex-initial mx-2">
-                <a href="javascript:">
-                  <n-icon size="24" color="#2d8cf0">
-                    <LogoFacebook />
-                  </n-icon>
-                </a>
-              </div>
-              <div class="flex-initial" style="margin-left: auto">
-                <a href="javascript:">注册账号</a>
-              </div>
-            </div>
           </n-form-item>
         </n-form>
       </div>
@@ -90,7 +56,7 @@
   import { useUserStore } from '@/store/modules/user';
   import { useMessage } from 'naive-ui';
   import { ResultEnum } from '@/enums/httpEnum';
-  import { PersonOutline, LockClosedOutline, LogoGithub, LogoFacebook } from '@vicons/ionicons5';
+  import { PersonOutline, LockClosedOutline } from '@vicons/ionicons5';
   import { PageEnum } from '@/enums/pageEnum';
   import { websiteConfig } from '@/config/website.config';
   interface FormState {
@@ -101,7 +67,6 @@
   const formRef = ref();
   const message = useMessage();
   const loading = ref(false);
-  const autoLogin = ref(true);
   const LOGIN_NAME = PageEnum.BASE_LOGIN_NAME;
 
   const formInline = reactive({
@@ -158,7 +123,8 @@
 <style lang="less" scoped>
   .view-account {
     display: flex;
-    flex-direction: column;
+    // flex-direction: column;
+    align-items: center;
     height: 100vh;
     overflow: auto;
 
@@ -168,6 +134,7 @@
       max-width: 384px;
       min-width: 320px;
       margin: 0 auto;
+      transform: translateY(-25%);
     }
 
     &-top {
@@ -175,7 +142,8 @@
       text-align: center;
 
       &-desc {
-        font-size: 14px;
+        font-size: 24px;
+        font-weight: bold;
         color: #808695;
       }
     }
