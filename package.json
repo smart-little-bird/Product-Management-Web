@@ -119,13 +119,13 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/jekip/naive-ui-admin.git"
+    "url": "git+https://github.com/smart-little-bird/Product-Management-Web.git"
   },
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/jekip/naive-ui-admin/issues"
+    "url": "https://github.com/smart-little-bird/Product-Management-Web/issues"
   },
-  "homepage": "https://github.com/jekip/naive-ui-admin",
+  "homepage": "https://github.com/smart-little-bird/Product-Management-Web",
   "engines": {
     "node": ">=16"
   }
