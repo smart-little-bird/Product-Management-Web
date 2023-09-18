@@ -40,7 +40,7 @@ const routes: Array<RouteRecordRaw> = [
         meta: {
           title: '新建合同',
         },
-        component: () => import('@/views/contract/create/create.vue'),
+        component: () => import('@/views/contract/create/index.vue'),
       },
     ],
   },
