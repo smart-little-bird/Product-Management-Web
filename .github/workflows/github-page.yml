@@ -4,9 +4,6 @@ on:
     branches:
       - main
 
-permissions:
-  contents: read
-  pages: write
 concurrency:
   group: 'pages'
   cancel-in-progress: false
@@ -18,28 +15,18 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      # setup node
-      - name: Setup Node.js
-        uses: actions/setup-node@v3
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v3
         with:
-          node-version: 18
-
-      # setup yarn
-      - name: Setup yarn
-        run: npm i -g yarn
-
-      - name: Install modules
-        run: yarn install
-
-      - name: Build static files
-        run: yarn build
+            node-version: 18
+      - run: npm i -g yarn
+      - run: yarn install
+      - run: yarn build
 
       - name: Deploy   # 部署
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           branch: static-pages # 部署后提交到的分支
           folder: dist # 这里填打包好的目录名称
+          repo-token: ${{ secrets.ACTION_TOKEN }}
 
