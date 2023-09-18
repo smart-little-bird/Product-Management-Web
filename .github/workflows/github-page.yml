@@ -30,5 +30,5 @@ jobs:
         with:
           branch: static-pages # 部署后提交到的分支
           folder: dist # 这里填打包好的目录名称
-          repo-token: ${{ secrets.ACTION_TOKEN }}
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
 
