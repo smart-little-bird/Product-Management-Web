@@ -1,6 +1,6 @@
 import { RouteRecordRaw } from 'vue-router';
 import { Layout } from '@/router/constant';
-import { PersonSharp } from '@vicons/ionicons5';
+import { PeopleSharp } from '@vicons/ionicons5';
 import { renderIcon } from '@/utils/index';
 
 /**
@@ -22,7 +22,7 @@ const routes: Array<RouteRecordRaw> = [
     component: Layout,
     meta: {
       title: '客户管理',
-      icon: renderIcon(PersonSharp),
+      icon: renderIcon(PeopleSharp),
       sort: 1,
     },
     children: [
