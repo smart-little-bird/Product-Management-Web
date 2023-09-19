@@ -2,7 +2,7 @@ const setting = {
   //导航模式 vertical 左侧菜单模式 horizontal 顶部菜单模式
   navMode: 'vertical',
   //导航风格 dark 暗色侧边栏 light 白色侧边栏 header-dark 暗色顶栏
-  navTheme: 'dark',
+  navTheme: 'light',
   // 是否处于移动端模式
   isMobile: false,
   //顶部
@@ -12,7 +12,7 @@ const setting = {
     //固定顶部
     fixed: true,
     //显示重载按钮
-    isReload: true,
+    isReload: false,
   },
   //页脚
   showFooter: true,
@@ -21,9 +21,9 @@ const setting = {
     //背景色
     bgColor: '#fff',
     //是否显示
-    show: true,
+    show: false,
     //固定多标签
-    fixed: true,
+    fixed: false,
   },
   //菜单
   menuSetting: {
@@ -45,13 +45,13 @@ const setting = {
     //是否显示
     show: true,
     //显示图标
-    showIcon: false,
+    showIcon: true,
   },
   //菜单权限模式 FIXED 前端固定路由  BACK 动态获取
   permissionMode: 'FIXED',
   //是否开启路由动画
   isPageAnimate: true,
   //路由动画类型
-  pageAnimateType: 'zoom-fade',
+  pageAnimateType: 'fade-slide',
 };
 export default setting;

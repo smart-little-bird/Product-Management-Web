@@ -6,15 +6,20 @@ const tableList = (pageSize) => {
   doCustomTimes(pageSize, () => {
     result.push({
       id: '@integer(10,999999)',
-      beginTime: '@datetime',
-      endTime: '@datetime',
-      address: '@city()',
+      clientType: 1,
       name: '@cname()',
-      avatar: Random.image('400x400', Random.color(), Random.color(), Random.first()),
-      date: `@date('yyyy-MM-dd')`,
-      time: `@time('HH:mm')`,
-      'no|100000-10000000': 100000,
-      'status|1': [true, false],
+      street: '@county()',
+      city: '@city()',
+      province: '@province()',
+      zipCode: '@zip()',
+      clientAgent: { name: '@cname()', phoneNumber: '@string("number", 11, 11 )' },
+      tFN: '@string()',
+      bankTitle: '@ctitle()',
+      bankAccount: '@ctitle()',
+      billingTelephone: '@string("number", 11, 11)',
+      contactNumber: '@string("number", 11, 11 )',
+      email: '@email()',
+      fax: '@string("number", 14, 21 )',
     });
   });
   return result;

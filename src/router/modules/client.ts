@@ -1,6 +1,6 @@
 import { RouteRecordRaw } from 'vue-router';
 import { Layout } from '@/router/constant';
-import { OptionsSharp } from '@vicons/ionicons5';
+import { PersonSharp } from '@vicons/ionicons5';
 import { renderIcon } from '@/utils/index';
 
 /**
@@ -22,7 +22,7 @@ const routes: Array<RouteRecordRaw> = [
     component: Layout,
     meta: {
       title: '客户管理',
-      icon: renderIcon(OptionsSharp),
+      icon: renderIcon(PersonSharp),
       sort: 1,
     },
     children: [
@@ -33,14 +33,6 @@ const routes: Array<RouteRecordRaw> = [
           title: '客户信息',
         },
         component: () => import('@/views/client/list/index.vue'),
-      },
-      {
-        path: 'create',
-        name: 'client_create',
-        meta: {
-          title: '新建客户',
-        },
-        component: () => import('@/views/client/create/index.vue'),
       },
     ],
   },
