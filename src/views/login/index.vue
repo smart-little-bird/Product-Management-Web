@@ -3,9 +3,9 @@
     <!-- <div class="view-account-header"></div> -->
     <div class="view-account-container">
       <div class="view-account-top">
-        <!-- <div class="view-account-top-logo">
+        <div class="view-account-top-logo">
           <img :src="websiteConfig.loginImage" alt="" />
-        </div> -->
+        </div>
         <div class="view-account-top-desc">{{ websiteConfig.loginDesc }}</div>
       </div>
       <div class="view-account-form">
@@ -141,6 +141,11 @@
       padding: 32px 0;
       text-align: center;
 
+      &-logo {
+        width: 100px;
+        height: 100px;
+        margin: 0 auto;
+      }
       &-desc {
         font-size: 24px;
         font-weight: bold;
