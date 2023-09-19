@@ -31,3 +31,10 @@ jobs:
         with:
           branch: static-pages # 部署后提交到的分支
           folder: dist # 这里填打包好的目录名称
+      
+      # 部署到 GitHub pages
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3 # 使用部署到 GitHub pages 的 action
+        with:
+          publish_dir: dist # 部署打包后的 dist 目录
+          commit_message: 自动部署 #
