@@ -21,7 +21,7 @@ const routes: Array<RouteRecordRaw> = [
     redirect: '/client/list',
     component: Layout,
     meta: {
-      title: '客户管理',
+      // title: '客户管理',
       icon: renderIcon(PeopleSharp),
       sort: 1,
     },

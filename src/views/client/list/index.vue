@@ -221,10 +221,11 @@
   });
 
   const actionColumn = reactive({
-    width: 220,
+    width: 200,
     title: '操作',
     key: 'action',
     fixed: 'right',
+    align: 'center',
     render(record) {
       return h(TableAction as any, {
         style: 'button',
@@ -234,7 +235,7 @@
             onClick: handleDelete.bind(null, record),
             // 根据业务控制是否显示 isShow 和 auth 是并且关系
             ifShow: () => {
-              return true;
+              return false;
             },
             // 根据权限控制是否显示: 有权限，会显示，支持多个
             auth: ['basic_list'],

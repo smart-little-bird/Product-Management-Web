@@ -83,29 +83,29 @@ export const columns: BasicColumn<ClientList>[] = [
   {
     title: '序号',
     key: 'id',
-    width: 150,
+    width: 100,
     align: 'center',
   },
   {
     title: '客户类型',
     key: 'clientType',
     align: 'center',
-    width: 150,
+    width: 100,
   },
   {
-    title: '名称',
+    title: '客户名称',
     key: 'name',
     align: 'center',
     width: 150,
   },
   {
-    title: '地址',
+    title: '客户地址',
     align: 'center',
     key: 'address',
     render(row) {
       return `${row.province} ${row.city} ${row.street}；邮编：${row.zipCode}`;
     },
-    width: 300,
+    width: 150,
   },
   {
     align: 'center',
@@ -127,19 +127,19 @@ export const columns: BasicColumn<ClientList>[] = [
   },
   {
     align: 'center',
-    title: '税号',
+    title: '客户税号',
     key: 'tFN',
     width: 150,
   },
   {
     align: 'center',
-    title: '银行抬头',
+    title: '客户银行抬头',
     key: 'bankTitle',
-    width: 200,
+    width: 150,
   },
   {
     align: 'center',
-    title: '银行账号',
+    title: '客户银行账号',
     key: 'bankAccount',
     width: 150,
   },
@@ -157,13 +157,13 @@ export const columns: BasicColumn<ClientList>[] = [
   },
   {
     align: 'center',
-    title: '邮箱',
+    title: '客户邮箱',
     key: 'email',
     width: 150,
   },
   {
     align: 'center',
-    title: '传真',
+    title: '客户传真',
     key: 'fax',
     width: 150,
   },

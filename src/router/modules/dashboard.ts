@@ -22,7 +22,7 @@ const routes: Array<RouteRecordRaw> = [
     redirect: '/dashboard/console',
     component: Layout,
     meta: {
-      title: 'Dashboard',
+      // title: 'Dashboard',
       icon: renderIcon(DashboardOutlined),
       permissions: ['dashboard_console', 'dashboard_console', 'dashboard_workplace'],
       sort: 0,
