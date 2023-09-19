@@ -1,1 +1,0 @@
-import{cC as p,a3 as t}from"./index.05a26d3d.js";function m(){const e=p(),s=t(()=>e.darkTheme),n=t(()=>e.appTheme),o=t(()=>e.appThemeList);return{getDarkTheme:s,getAppTheme:n,getAppThemeList:o}}export{m as u};
