@@ -1,1 +1,0 @@
-const u=Object.freeze({title:"\u667A\u6167\u5DE5\u5382\u7BA1\u7406\u7CFB\u7EDF",loginDesc:"\u667A\u6167\u5DE5\u5382\u7BA1\u7406\u7CFB\u7EDF"});export{u as w};
