@@ -1,5 +1,4 @@
-import { h } from 'vue';
-import { NAvatar } from 'naive-ui';
+import { NTag } from 'naive-ui';
 import { BasicColumn } from '@/components/Table';
 export interface ListData {
   id: string;
@@ -10,9 +9,14 @@ export interface ListData {
   endTime: string;
   date: string;
 }
+export enum ClientType {
+  Enterprise,
+  Personage,
+  ThreeWay,
+}
 export interface ClientList {
   id: number;
-  clientType: number;
+  clientType: ClientType;
   name: string;
   street: string;
   city: string;
@@ -31,6 +35,14 @@ export interface ClientAgent {
   name: string;
   phoneNumber: string;
 }
+export const ClientTypeHelper = {
+  clientTypeMapper: new Map([
+    [ClientType.Enterprise, '企业'],
+    [ClientType.Personage, '个人'],
+    [ClientType.ThreeWay, '其他'],
+  ]),
+  getDesc: (type: ClientType) => ClientTypeHelper.clientTypeMapper.get(type),
+};
 // export const columns: BasicColumn<ListData>[] = [
 //   {
 //     title: 'id',
@@ -87,16 +99,42 @@ export const columns: BasicColumn<ClientList>[] = [
     align: 'center',
   },
   {
-    title: '客户类型',
-    key: 'clientType',
-    align: 'center',
-    width: 100,
-  },
-  {
     title: '客户名称',
     key: 'name',
     align: 'center',
     width: 150,
+  },
+  {
+    title: '客户类型',
+    key: 'clientType',
+    align: 'center',
+    width: 100,
+    render(row) {
+      return (
+        <NTag
+          bordered
+          round
+          size="medium"
+          type={
+            row.clientType === ClientType.Enterprise
+              ? 'success'
+              : row.clientType === ClientType.Personage
+              ? 'info'
+              : 'default'
+          }
+        >
+          {{ default: () => ClientTypeHelper.getDesc(row.clientType) }}
+        </NTag>
+      );
+      // return h(NTag, {
+      //   default() {
+      //     return ClientTypeHelper.getDesc(row.clientType);
+      //   },
+      //   size: 'small',
+      //   //         size: 48,
+      //   //         src: row.avatar,
+      // });
+    },
   },
   {
     title: '客户地址',
@@ -146,7 +184,7 @@ export const columns: BasicColumn<ClientList>[] = [
   {
     align: 'center',
     title: '开票电话',
-    key: 'bankAccount',
+    key: 'billingTelephone ',
     width: 150,
   },
   {

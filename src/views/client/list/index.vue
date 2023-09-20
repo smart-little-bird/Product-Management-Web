@@ -25,28 +25,77 @@
       </template>
     </BasicTable>
 
-    <n-modal v-model:show="showModal" :show-icon="false" preset="dialog" title="新建">
+    <n-modal
+      v-model:show="showModal"
+      :show-icon="false"
+      preset="card"
+      size="huge"
+      style="width: 800px"
+      title="新建"
+    >
       <n-form
         :model="formParams"
         :rules="rules"
         ref="formRef"
         label-placement="left"
-        :label-width="80"
+        :label-width="'auto'"
         class="py-4"
       >
-        <n-form-item label="名称" path="name">
-          <n-input placeholder="请输入名称" v-model:value="formParams.name" />
+        <n-form-item label="客户名称" path="name">
+          <n-input placeholder="请输入客户名称" v-model:value="formParams.name" />
         </n-form-item>
-        <n-form-item label="地址" path="address">
-          <n-input type="textarea" placeholder="请输入地址" v-model:value="formParams.address" />
+        <n-form-item label="客户类型" path="clientType">
+          <n-select
+            v-model:value="formParams.clientType"
+            placeholder="请选择客户类型"
+            :options="clientTypeSelectOptions"
+          />
         </n-form-item>
-        <n-form-item label="日期" path="date">
-          <n-date-picker type="datetime" placeholder="请选择日期" v-model:value="formParams.date" />
+        <n-form-item label="地址" path="city">
+          <n-space justify="space-between" :inline="true" :align="'end'" :wrap="true">
+            <n-cascader
+              style="min-width: 200px; max-width: 200px"
+              :show-path="true"
+              v-model:value="formParams.city"
+              placeholder="选择省市"
+              :options="addressSelectOptions"
+              :check-strategy="'child'"
+              @update:value="handleAddressValue"
+            />
+            <n-input placeholder="请输入街道" v-model:value="formParams.street" />
+            <n-input placeholder="请输入邮编" v-model:value="formParams.zipCode" />
+          </n-space>
+        </n-form-item>
+        <n-form-item label="代理人信息" path="clientAgent">
+          <n-space justify="space-between" :wrap="true">
+            <n-input placeholder="请输入代理人名称" v-model:value="formParams.clientAgent.name" />
+            <n-input
+              placeholder="请输入代理人联系方式"
+              v-model:value="formParams.clientAgent.phoneNumber"
+            />
+          </n-space>
+        </n-form-item>
+        <n-form-item label="客户税号" path="tFN">
+          <n-input placeholder="请输入客户开票电话" v-model:value="formParams.tFN" />
+        </n-form-item>
+        <n-form-item label="银行信息" path="bank">
+          <n-space justify="space-between" :wrap="true">
+            <n-input placeholder="请输入客户银行抬头" v-model:value="formParams.bankTitle" />
+            <n-input placeholder="请输入客户银行账号" v-model:value="formParams.bankAccount" />
+            <n-input placeholder="请输入客户开票电话" v-model:value="formParams.billingTelephone" />
+          </n-space>
+        </n-form-item>
+        <n-form-item label="联系方式" path="contact">
+          <n-space justify="space-between" :wrap="true">
+            <n-input placeholder="请输入客户联系电话" v-model:value="formParams.contactNumber" />
+            <n-input placeholder="请输入客户邮箱" v-model:value="formParams.email" />
+            <n-input placeholder="请输入客户传真" v-model:value="formParams.fax" />
+          </n-space>
         </n-form-item>
       </n-form>
 
-      <template #action>
-        <n-space>
+      <template #footer>
+        <n-space justify="center">
           <n-button @click="() => (showModal = false)">取消</n-button>
           <n-button type="info" :loading="formBtnLoading" @click="confirmForm">确定</n-button>
         </n-space>
@@ -56,15 +105,29 @@
 </template>
 
 <script lang="ts" setup>
-  import { h, reactive, ref } from 'vue';
+  import { h, reactive, ref, computed } from 'vue';
   import { BasicTable, TableAction } from '@/components/Table';
   // import { FormSchema } from '@/components/Form/index';
   import { getTableList } from '@/api/table/list';
-  import { columns, ClientList } from './columns';
+  import { columns, ClientList, ClientTypeHelper } from './columns';
   import { PlusOutlined } from '@vicons/antd';
   import { useRouter } from 'vue-router';
   import { type FormRules } from 'naive-ui';
+  import address from './address';
 
+  const clientTypeSelectOptions = computed(() =>
+    Array.from(ClientTypeHelper.clientTypeMapper.keys()).map((k) => ({
+      label: ClientTypeHelper.getDesc(k),
+      value: k,
+    }))
+  );
+  const addressSelectOptions = computed(() =>
+    address.map((addr) => ({
+      value: addr.name,
+      label: addr.name,
+      children: addr.children.map((caddr) => ({ value: caddr.name, label: caddr.name })),
+    }))
+  );
   const rules: FormRules = {
     name: {
       required: true,
@@ -216,10 +279,28 @@
   const formBtnLoading = ref(false);
   const formParams = reactive({
     name: '',
-    address: '',
+    clientType: null,
     date: null,
+    province: null,
+    city: null,
+    street: null,
+    zipCode: null,
+    clientAgent: {
+      name: null,
+      phoneNumber: null,
+    },
+    tFN: null,
+    bankTitle: null,
+    bankAccount: null,
+    billingTelephone: null,
+    contactNumber: null,
+    email: null,
+    fax: null,
   });
-
+  const handleAddressValue = (value, option, pathValues) => {
+    console.log(value, option, pathValues);
+    formParams.province = pathValues[0].value;
+  };
   const actionColumn = reactive({
     width: 200,
     title: '操作',

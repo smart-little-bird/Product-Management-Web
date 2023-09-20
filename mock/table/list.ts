@@ -6,7 +6,7 @@ const tableList = (pageSize) => {
   doCustomTimes(pageSize, () => {
     result.push({
       id: '@integer(10,999999)',
-      clientType: 1,
+      clientType: Random.integer(0, 2),
       name: '@cname()',
       street: '@county()',
       city: '@city()',
