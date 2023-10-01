@@ -28,15 +28,25 @@ const routes: Array<RouteRecordRaw> = [
     children: [
       {
         path: 'list',
-        name: 'product_list',
+        name: 'product-list',
         meta: {
           title: '产品信息',
         },
         component: () => import('@/views/product/list/index.vue'),
       },
       {
+        path: 'product-detail/:id?',
+        name: 'product-detail',
+        meta: {
+          title: '客户详情',
+          hidden: true,
+          activeMenu: 'product-list',
+        },
+        component: () => import('@/views/product/detail/index.vue'),
+      },
+      {
         path: 'create',
-        name: 'product_create',
+        name: 'product-create',
         meta: {
           title: '新建产品',
         },

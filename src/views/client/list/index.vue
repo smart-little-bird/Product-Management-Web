@@ -41,6 +41,9 @@
         :label-width="'auto'"
         class="py-4"
       >
+        <n-form-item label="客户Id" path="id" hidden v-show="false">
+          <n-input placeholder="请输入客户Id" readonly v-model:value="formParams.id" hidden />
+        </n-form-item>
         <n-form-item label="客户名称" path="name">
           <n-input placeholder="请输入客户名称" v-model:value="formParams.name" />
         </n-form-item>
@@ -277,7 +280,9 @@
 
   const showModal = ref(false);
   const formBtnLoading = ref(false);
+  // todo: 检验
   const formParams = reactive({
+    id: null,
     name: '',
     clientType: null,
     date: null,
@@ -319,6 +324,14 @@
               return false;
             },
             // 根据权限控制是否显示: 有权限，会显示，支持多个
+            auth: ['basic_list'],
+          },
+          {
+            label: '详情',
+            onClick: handleShowDetail.bind(null, record),
+            ifShow: () => {
+              return true;
+            },
             auth: ['basic_list'],
           },
           {
@@ -393,9 +406,15 @@
     });
   }
 
+  function handleShowDetail(record: Recordable) {
+    console.log('点击了查看详情', record);
+    router.push({ name: 'client-detail', params: { id: record.id } });
+  }
   function handleEdit(record: Recordable) {
     console.log('点击了编辑', record);
-    router.push({ name: 'basic-info', params: { id: record.id } });
+    showModal.value = true;
+    formParams.id = record.id;
+    // todo: formParams 赋值
   }
 
   function handleDelete(record: Recordable) {

@@ -28,11 +28,21 @@ const routes: Array<RouteRecordRaw> = [
     children: [
       {
         path: 'list',
-        name: 'client_list',
+        name: 'client-list',
         meta: {
           title: '客户信息',
         },
         component: () => import('@/views/client/list/index.vue'),
+      },
+      {
+        path: 'client-detail/:id?',
+        name: 'client-detail',
+        meta: {
+          title: '客户详情',
+          hidden: true,
+          activeMenu: 'client-list',
+        },
+        component: () => import('@/views/client/detail/index.vue'),
       },
     ],
   },
