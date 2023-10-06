@@ -345,6 +345,14 @@
         ],
         dropDownActions: [
           {
+            label: '创建合同',
+            key: 'contract',
+            // 根据业务控制是否显示: 非enable状态的不显示启用按钮
+            ifShow: () => {
+              return true;
+            },
+          },
+          {
             label: '启用',
             key: 'enabled',
             // 根据业务控制是否显示: 非enable状态的不显示启用按钮
