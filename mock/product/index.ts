@@ -1,5 +1,5 @@
 import { Random } from 'mockjs';
-import { resultSuccess, doCustomTimes } from '../_util';
+import { resultSuccess, resultPageSuccess, doCustomTimes } from '../_util';
 import { range } from 'lodash';
 
 const productList = (pageSize) => {
@@ -33,16 +33,10 @@ export default [
     timeout: 1000,
     method: 'get',
     response: ({ query }) => {
-      const { pageIndex = 1, pageSize = 10 } = query;
+      const { page, pageSize } = query;
+      debugger;
       const list = productList(Number(pageSize));
-      return resultSuccess({
-        page: {
-          pageIndex: Number(pageIndex),
-          pageSize: Number(pageSize),
-          total: 30 * Number(pageSize),
-        },
-        productListDtos: list,
-      });
+      return resultPageSuccess(Number(page), Number(pageSize), list);
     },
   },
   {

@@ -1,5 +1,5 @@
 import { Random } from 'mockjs';
-import { resultSuccess, doCustomTimes } from '../_util';
+import { resultSuccess, resultPageSuccess, doCustomTimes } from '../_util';
 
 const clientList = (pageSize) => {
   const result: any[] = [];
@@ -32,17 +32,11 @@ export default [
     timeout: 1000,
     method: 'get',
     response: ({ query }) => {
-      const { pageIndex = 1, pageSize = 10 } = query;
+      console.log(query);
+      const { page, pageSize } = query;
       const list = clientList(Number(pageSize));
-      //并非真实，只是为了模拟搜索结果
-      return resultSuccess({
-        page: {
-          pageIndex: Number(pageIndex),
-          pageSize: Number(pageSize),
-          total: 30 * Number(pageSize),
-        },
-        clientListDtos: list,
-      });
+      console.log(list);
+      return resultPageSuccess(Number(page), Number(pageSize), list);
     },
   },
   {

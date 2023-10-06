@@ -111,7 +111,7 @@
   import { h, reactive, ref, computed } from 'vue';
   import { BasicTable, TableAction } from '@/components/Table';
   // import { FormSchema } from '@/components/Form/index';
-  import { getTableList } from '@/api/table/list';
+  import { getPagedList } from '@/api/client/index';
   import { columns, ClientList, ClientTypeHelper } from './columns';
   import { PlusOutlined } from '@vicons/antd';
   import { useRouter } from 'vue-router';
@@ -307,7 +307,7 @@
     formParams.province = pathValues[0].value;
   };
   const actionColumn = reactive({
-    width: 200,
+    width: 250,
     title: '操作',
     key: 'action',
     fixed: 'right',
@@ -317,16 +317,6 @@
         style: 'button',
         actions: [
           {
-            label: '删除',
-            onClick: handleDelete.bind(null, record),
-            // 根据业务控制是否显示 isShow 和 auth 是并且关系
-            ifShow: () => {
-              return false;
-            },
-            // 根据权限控制是否显示: 有权限，会显示，支持多个
-            auth: ['basic_list'],
-          },
-          {
             label: '详情',
             onClick: handleShowDetail.bind(null, record),
             ifShow: () => {
@@ -335,42 +325,52 @@
             auth: ['basic_list'],
           },
           {
-            label: '编辑',
+            label: '创建合同',
             onClick: handleEdit.bind(null, record),
             ifShow: () => {
               return true;
             },
             auth: ['basic_list'],
           },
-        ],
-        dropDownActions: [
           {
-            label: '创建合同',
-            key: 'contract',
-            // 根据业务控制是否显示: 非enable状态的不显示启用按钮
+            label: '删除',
+            onClick: handleDelete.bind(null, record),
+            // 根据业务控制是否显示 isShow 和 auth 是并且关系
             ifShow: () => {
               return true;
             },
-          },
-          {
-            label: '启用',
-            key: 'enabled',
-            // 根据业务控制是否显示: 非enable状态的不显示启用按钮
-            ifShow: () => {
-              return true;
-            },
-          },
-          {
-            label: '禁用',
-            key: 'disabled',
-            ifShow: () => {
-              return true;
-            },
+            // 根据权限控制是否显示: 有权限，会显示，支持多个
+            auth: ['basic_list'],
           },
         ],
-        select: (key) => {
-          window['$message'].info(`您点击了，${key} 按钮`);
-        },
+        // dropDownActions: [
+        //   {
+        //     label: '创建合同',
+        //     key: 'contract',
+        //     // 根据业务控制是否显示: 非enable状态的不显示启用按钮
+        //     ifShow: () => {
+        //       return true;
+        //     },
+        //   },
+        //   {
+        //     label: '启用',
+        //     key: 'enabled',
+        //     // 根据业务控制是否显示: 非enable状态的不显示启用按钮
+        //     ifShow: () => {
+        //       return true;
+        //     },
+        //   },
+        //   {
+        //     label: '禁用',
+        //     key: 'disabled',
+        //     ifShow: () => {
+        //       return true;
+        //     },
+        //   },
+        // ],
+        // select: (key) => {
+        //   window['$message'].info(`您点击了，${key} 按钮`);
+        // },
       });
     },
   });
@@ -386,7 +386,8 @@
   }
 
   const loadDataTable = async (res) => {
-    return await getTableList({ ...res });
+    const data = await getPagedList({ ...res });
+    return data;
   };
 
   function onCheckedRow(rowKeys) {
