@@ -32,7 +32,7 @@ const routes: Array<RouteRecordRaw> = [
         meta: {
           title: '客户信息',
         },
-        component: () => import('@/views/client/list/index.vue'),
+        component: () => import('@/views/client/index.vue'),
       },
       {
         path: 'client-detail/:id?',

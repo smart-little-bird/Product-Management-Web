@@ -21,14 +21,13 @@
       </n-form>
     </n-card>
     <n-card :bordered="false" class="proCard mt-4" size="small" :segmented="{ content: true }">
-      <n-space>
       <n-data-table
         :columns="productItemColumns"
         :data="productItemInfos"
         :pagination="false"
         :bordered="false"
+        size="small"
       />
-    </n-space>
       <!-- <BasicTable
         :columns="productItemColumns"
         :row-key="(row: ProductItem) => row.id"
@@ -50,7 +49,9 @@
         </template>
       </BasicTable> -->
       <n-space justify="center">
-        <n-button type="info" size="large" @click="showProductItemModal"> 添加产品明细 </n-button>
+        <n-button quaternary type="info" size="large" @click="showProductItemModal">
+          添加产品明细
+        </n-button>
       </n-space>
     </n-card>
     <n-modal
@@ -121,14 +122,11 @@
   import { reactive, computed, ref, h } from 'vue';
   // import { PlusOutlined } from '@vicons/antd';
   import { useRouter } from 'vue-router';
-  import { ProductTypeHelper, ProductItem, productItemColumns } from '../list/columns';
+  import { ProductTypeHelper, ProductItem, productItemColumns } from '../columns';
   import { TableAction } from '@/components/Table';
-  // export default defineComponent({
-  // setup() {
-  // todo : 产品详情页
   const router = useRouter();
   const showCreateProductItemModal = ref(false);
-  const productItemInfos = reactive([] as Partial<ProductItem>[]);
+  const productItemInfos = reactive([] as ProductItem[]);
   const productItemInfo = reactive({
     id: null,
     productType: null,
@@ -149,6 +147,7 @@
     showCreateProductItemModal.value = true;
   };
   const addProductItem = () => {
+    // productItemInfo.id = productItemInfos.length + 1;
     productItemInfos.push(productItemInfo);
     showCreateProductItemModal.value = false;
   };
@@ -158,7 +157,7 @@
     key: 'action',
     fixed: 'right',
     align: 'center',
-    render(record: Recordable) {
+    render(record) {
       return h(TableAction as any, {
         style: 'button',
         actions: [
@@ -183,22 +182,11 @@
   });
   const productTypeSelectOptions = computed(() => {
     return Array.from(ProductTypeHelper.productTypeMapper.keys()).map((k) => ({
-      label: ProductTypeHelper.getDesc(k),
-      value: k,
+      label: ProductTypeHelper.getDesc(k) as String,
+      value: k as Number,
     }));
   });
-  // return {
-  //   goBack,
-  //   addProductItem,
-  //   productInfo,
-  //   productItemInfos,
-  //   ProductItem,
-  //   productItemInfo,
-  //   productTypeSelectOptions,
-  //   showCreateProductItemModal,
-  // };
-  // },
-  // });
 </script>
 
 <style lang="less" scoped></style>
+../columns

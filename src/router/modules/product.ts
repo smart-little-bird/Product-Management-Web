@@ -32,7 +32,7 @@ const routes: Array<RouteRecordRaw> = [
         meta: {
           title: '产品信息',
         },
-        component: () => import('@/views/product/list/index.vue'),
+        component: () => import('@/views/product/index.vue'),
       },
       {
         path: 'product-detail/:id?',
