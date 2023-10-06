@@ -1,1 +1,0 @@
-import{cD as p,y as t}from"./index.01d75b1f.js";function m(){const e=p(),s=t(()=>e.darkTheme),n=t(()=>e.appTheme),o=t(()=>e.appThemeList);return{getDarkTheme:s,getAppTheme:n,getAppThemeList:o}}export{m as u};
