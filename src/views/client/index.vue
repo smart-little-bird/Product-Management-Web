@@ -111,7 +111,7 @@
   import { h, reactive, ref, computed } from 'vue';
   import { BasicTable, TableAction } from '@/components/Table';
   // import { FormSchema } from '@/components/Form/index';
-  import { getPagedList } from '@/api/client/index';
+  import { getPagedList, create } from '@/api/client/index';
   import { columns, ClientList, ClientTypeHelper } from './columns';
   import { PlusOutlined } from '@vicons/antd';
   import { useRouter } from 'vue-router';
@@ -398,21 +398,23 @@
   //   actionRef.value.reload();
   // }
 
-  function confirmForm(e) {
+  async function confirmForm(e) {
     e.preventDefault();
     formBtnLoading.value = true;
-    formRef.value.validate((errors) => {
-      if (!errors) {
-        window['$message'].success('新建成功');
-        setTimeout(() => {
-          showModal.value = false;
-          // reloadTable();
-        });
-      } else {
-        window['$message'].error('请填写完整信息');
-      }
-      formBtnLoading.value = false;
-    });
+    // formRef.value.validate((errors) => {
+    //   if (!errors) {
+    //     window['$message'].success('新建成功');
+    //     setTimeout(() => {
+    //       showModal.value = false;
+    //       // reloadTable();
+    //     });
+    //   } else {
+    //     window['$message'].error('请填写完整信息');
+    //   }
+    //   formBtnLoading.value = false;
+    // });
+    await create(formParams);
+    formBtnLoading.value = false;
   }
 
   function handleShowDetail(record: Recordable) {

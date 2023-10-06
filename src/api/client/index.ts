@@ -16,12 +16,17 @@ export function getList() {
   });
 }
 
-export function create(params) {
-  return http.request({
-    url: '/client',
-    method: 'post',
-    params,
-  });
+export async function create(params) {
+  return await http.request(
+    {
+      url: '/client',
+      method: 'post',
+      params,
+    },
+    {
+      isTransformResponse: false,
+    }
+  );
 }
 
 export function remove(id) {
