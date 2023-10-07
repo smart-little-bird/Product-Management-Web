@@ -184,7 +184,7 @@ export const columns: BasicColumn<ClientList>[] = [
   {
     align: 'center',
     title: '开票电话',
-    key: 'billingTelephone ',
+    key: 'billingTelephone',
     width: 150,
   },
   {
