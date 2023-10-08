@@ -212,7 +212,7 @@
   const formBtnLoading = ref(false);
   const dialog = useDialog();
   const message = useMessage();
-  const formParams = reactive({
+  const initialFormValue = {
     id: null,
     name: '',
     clientType: null,
@@ -232,7 +232,8 @@
     contactNumber: null,
     email: null,
     fax: null,
-  });
+  };
+  const formParams = ref({ ...initialFormValue });
   const rules: FormRules = {
     name: {
       required: true,
@@ -334,7 +335,7 @@
   );
   const handleAddressValue = (value, option, pathValues) => {
     console.log(value, option, pathValues);
-    formParams.province = pathValues[0].value;
+    formParams.value.province = pathValues[0].value;
   };
   const actionColumn = reactive({
     width: 250,
@@ -359,45 +360,12 @@
             onClick: handleDelete.bind(null, record),
           },
         ],
-        // dropDownActions: [
-        //   {
-        //     label: '创建合同',
-        //     key: 'contract',
-        //     // 根据业务控制是否显示: 非enable状态的不显示启用按钮
-        //     ifShow: () => {
-        //       return true;
-        //     },
-        //   },
-        //   {
-        //     label: '启用',
-        //     key: 'enabled',
-        //     // 根据业务控制是否显示: 非enable状态的不显示启用按钮
-        //     ifShow: () => {
-        //       return true;
-        //     },
-        //   },
-        //   {
-        //     label: '禁用',
-        //     key: 'disabled',
-        //     ifShow: () => {
-        //       return true;
-        //     },
-        //   },
-        // ],
-        // select: (key) => {
-        //   window['$message'].info(`您点击了，${key} 按钮`);
-        // },
       });
     },
   });
 
-  // const [register, { getFieldsValue }] = useForm({
-  //   gridProps: { cols: '1 s:1 m:2 l:3 xl:4 2xl:4' },
-  //   labelWidth: 80,
-  //   schemas,
-  // });
-
   function addTable() {
+    formParams.value = initialFormValue;
     showModal.value = true;
   }
 
@@ -442,7 +410,7 @@
   function handleEdit(record: Recordable) {
     console.log('点击了编辑', record);
     showModal.value = true;
-    formParams.id = record.id;
+    formParams.value.id = record.id;
     // todo: formParams 赋值
   }
 
