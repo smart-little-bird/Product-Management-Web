@@ -43,60 +43,13 @@ export const ClientTypeHelper = {
   ]),
   getDesc: (type: ClientType) => ClientTypeHelper.clientTypeMapper.get(type),
 };
-// export const columns: BasicColumn<ListData>[] = [
-//   {
-//     title: 'id',
-//     key: 'id',
-//     width: 100,
-//   },
-//   {
-//     title: '名称',
-//     key: 'name',
-//     width: 100,
-//   },
-//   {
-//     title: '头像',
-//     key: 'avatar',
-//     width: 100,
-//     render(row) {
-//       return h(NAvatar, {
-//         size: 48,
-//         src: row.avatar,
-//       });
-//     },
-//   },
-//   {
-//     title: '地址',
-//     key: 'address',
-//     auth: ['basic_list'], // 同时根据权限控制是否显示
-//     ifShow: (_column) => {
-//       return true; // 根据业务控制是否显示
-//     },
-//     width: 150,
-//   },
-//   {
-//     title: '开始日期',
-//     key: 'beginTime',
-//     width: 160,
-//   },
-//   {
-//     title: '结束日期',
-//     key: 'endTime',
-//     width: 160,
-//   },
-//   {
-//     title: '创建时间',
-//     key: 'date',
-//     width: 100,
-//   },
-// ];
-
 export const columns: BasicColumn<ClientList>[] = [
   {
     title: '序号',
     key: 'id',
     width: 100,
     align: 'center',
+    ifShow: false,
   },
   {
     title: '客户名称',
@@ -126,14 +79,6 @@ export const columns: BasicColumn<ClientList>[] = [
           {{ default: () => ClientTypeHelper.getDesc(row.clientType) }}
         </NTag>
       );
-      // return h(NTag, {
-      //   default() {
-      //     return ClientTypeHelper.getDesc(row.clientType);
-      //   },
-      //   size: 'small',
-      //   //         size: 48,
-      //   //         src: row.avatar,
-      // });
     },
   },
   {
@@ -156,7 +101,7 @@ export const columns: BasicColumn<ClientList>[] = [
   },
   {
     align: 'center',
-    title: '代理联系方式',
+    title: '代理联系电话',
     key: 'clientAgentPhoneNumber',
     width: 150,
     render(row) {
