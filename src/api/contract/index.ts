@@ -9,3 +9,18 @@ export function create(params) {
     params,
   });
 }
+
+export function getPagedList(params) {
+  return http.request({
+    url: `/${controller}`,
+    method: 'get',
+    params,
+  });
+}
+
+export function get(id) {
+  return http.request({
+    url: `/${controller}/${id}`,
+    method: 'get',
+  });
+}

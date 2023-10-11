@@ -1,9 +1,11 @@
 import { http } from '@/utils/http/axios';
 
+const controller = 'client';
+
 //获取table
 export function getPagedList(params) {
   return http.request({
-    url: '/client',
+    url: `/${controller}`,
     method: 'get',
     params,
   });
@@ -11,7 +13,7 @@ export function getPagedList(params) {
 
 export function getList() {
   return http.request({
-    url: '/client/simple',
+    url: `/${controller}/simple`,
     method: 'get',
   });
 }
@@ -19,7 +21,7 @@ export function getList() {
 export async function create(params) {
   return await http.request(
     {
-      url: '/client',
+      url: `/${controller}`,
       method: 'post',
       params,
     },
@@ -31,7 +33,7 @@ export async function create(params) {
 
 export function remove(id) {
   return http.request({
-    url: `/client/${id}`,
+    url: `/${controller}/${id}`,
     method: 'delete',
   });
 }
