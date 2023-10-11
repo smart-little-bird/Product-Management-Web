@@ -57,6 +57,25 @@ export const columns: BasicColumn<ProductList>[] = [
     width: 100,
   },
 ];
+const getProductTypeTagType = (productType: ProductType) => {
+  let tagType: 'default' | 'success' | 'info' | 'warning' | 'error' | 'primary' | undefined =
+    undefined;
+  switch (productType) {
+    case ProductType.Shafting:
+      tagType = 'success';
+      break;
+    case ProductType.RudderSystem:
+      tagType = 'info';
+      break;
+    case ProductType.NonStandard:
+      tagType = 'warning';
+      break;
+    default:
+      tagType = 'default';
+      break;
+  }
+  return tagType;
+};
 
 export const productItemColumns: BasicColumn<ProductItem>[] = [
   {
@@ -71,22 +90,11 @@ export const productItemColumns: BasicColumn<ProductItem>[] = [
     align: 'center',
     width: 100,
     render(row) {
-      <NTag
-        bordered
-        round
-        size="medium"
-        type={
-          row.productType === ProductType.Shafting
-            ? 'success'
-            : row.productType === ProductType.RudderSystem
-            ? 'info'
-            : row.productType === ProductType.NonStandard
-            ? 'warning'
-            : 'default'
-        }
-      >
-        {{ default: () => ProductTypeHelper.getDesc(row.productType) }}
-      </NTag>;
+      return (
+        <NTag bordered round size="medium" type={getProductTypeTagType(row.productType)}>
+          {{ default: () => ProductTypeHelper.getDesc(row.productType) }}
+        </NTag>
+      );
     },
   },
   {

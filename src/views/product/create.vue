@@ -111,6 +111,7 @@
     fixed: 'right',
     align: 'center',
     render(record) {
+      console.log(record);
       return h(TableAction as any, {
         style: 'button',
         actions: [
