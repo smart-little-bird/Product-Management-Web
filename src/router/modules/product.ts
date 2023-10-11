@@ -50,7 +50,7 @@ const routes: Array<RouteRecordRaw> = [
         meta: {
           title: '新建产品',
         },
-        component: () => import('@/views/product/create/index.vue'),
+        component: () => import('@/views/product/create.vue'),
       },
     ],
   },

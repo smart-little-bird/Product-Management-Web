@@ -1,6 +1,6 @@
 <template>
   <div>
-    <n-card :bordered="false" class="proCard mt-4" size="small" :segmented="{ content: true }">
+    <n-card :bordered="false" class="mt-4 proCard" size="small" :segmented="{ content: true }">
       <n-form
         :model="productInfo"
         ref="productFormRef"
@@ -20,7 +20,7 @@
         </n-form-item>
       </n-form>
     </n-card>
-    <n-card :bordered="false" class="proCard mt-4" size="small" :segmented="{ content: true }">
+    <n-card :bordered="false" class="mt-4 proCard" size="small" :segmented="{ content: true }">
       <n-data-table
         :columns="productItemColumns"
         :data="productItemInfos"
@@ -62,45 +62,7 @@
       style="width: 800px"
       title="新建产品明细"
     >
-      <n-form
-        ref="productItemFormRef"
-        :label-width="'auto'"
-        label-placement="left"
-        :model="productItemInfo"
-      >
-        <n-form-item label="产品类型" path="productType">
-          <n-select
-            v-model:value="productItemInfo.productType"
-            placeholder="产品类型"
-            :options="productTypeSelectOptions"
-            size="small"
-          />
-        </n-form-item>
-        <n-form-item label="名称" path="name">
-          <n-input v-model:value="productItemInfo.name" placeholder="输入名称" />
-        </n-form-item>
-        <n-form-item label="规格型号" path="specifications">
-          <n-input v-model:value="productItemInfo.specifications" placeholder="规格型号" />
-        </n-form-item>
-        <n-form-item label="数量" path="amount">
-          <n-input v-model:value="productItemInfo.amount" placeholder="数量" />
-        </n-form-item>
-        <n-form-item label="单价" path="unitPrice">
-          <n-input v-model:value="productItemInfo.unitPrice" placeholder="单价" />
-        </n-form-item>
-        <n-form-item label="单位" path="unit">
-          <n-input v-model:value="productItemInfo.unit" placeholder="单位" />
-        </n-form-item>
-        <n-form-item label="材料型号" path="material">
-          <n-input v-model:value="productItemInfo.material" placeholder="材料型号" />
-        </n-form-item>
-        <n-form-item label="技术要求" path="technicalRequirements">
-          <n-input v-model:value="productItemInfo.technicalRequirements" placeholder="技术要求" />
-        </n-form-item>
-        <n-form-item label="备注" path="remark">
-          <n-input v-model:value="productItemInfo.remark" placeholder="备注" />
-        </n-form-item>
-      </n-form>
+      <product-item-form :item="productItemInfo" />
       <template #footer>
         <n-space justify="center">
           <n-button @click="() => (showCreateProductItemModal = false)">取消</n-button>
@@ -109,7 +71,7 @@
       </template>
     </n-modal>
 
-    <n-card :bordered="false" class="proCard mt-4" size="small" :segmented="{ content: true }">
+    <n-card :bordered="false" class="mt-4 proCard" size="small" :segmented="{ content: true }">
       <n-space justify="center">
         <n-button type="default" @click="goBack"> 返回 </n-button>
         <n-button type="success" @click="goBack"> 提交 </n-button>
@@ -119,26 +81,16 @@
 </template>
 
 <script lang="ts" setup>
-  import { reactive, computed, ref, h } from 'vue';
+  import { reactive, ref, h } from 'vue';
   // import { PlusOutlined } from '@vicons/antd';
+  import productItemForm from './product-item-form.vue';
   import { useRouter } from 'vue-router';
-  import { ProductTypeHelper, ProductItem, productItemColumns } from '../columns';
+  import { ProductItem, productItemColumns } from './columns';
   import { TableAction } from '@/components/Table';
   const router = useRouter();
   const showCreateProductItemModal = ref(false);
   const productItemInfos = reactive([] as ProductItem[]);
-  const productItemInfo = reactive({
-    id: null,
-    productType: null,
-    name: null,
-    specifications: null,
-    amount: null,
-    unitPrice: null,
-    unit: null,
-    material: null,
-    technicalRequirements: null,
-    remark: null,
-  });
+  const productItemInfo = reactive({} as ProductItem);
   const goBack = () => {
     console.log('点击了返回产品列表页');
     router.push({ name: 'product-list' });
@@ -179,14 +131,8 @@
     id: null,
     description: null,
     entryCriteria: null,
-  });
-  const productTypeSelectOptions = computed(() => {
-    return Array.from(ProductTypeHelper.productTypeMapper.keys()).map((k) => ({
-      label: ProductTypeHelper.getDesc(k) as String,
-      value: k as Number,
-    }));
+    productItemDtos: [] as ProductItem[],
   });
 </script>
 
 <style lang="less" scoped></style>
-../columns

@@ -78,9 +78,9 @@ export const productItemColumns: BasicColumn<ProductItem>[] = [
         type={
           row.productType === ProductType.Shafting
             ? 'success'
-            : row.clientType === ProductType.RudderSystem
+            : row.productType === ProductType.RudderSystem
             ? 'info'
-            : row.clientType === ProductType.NonStandard
+            : row.productType === ProductType.NonStandard
             ? 'warning'
             : 'default'
         }
