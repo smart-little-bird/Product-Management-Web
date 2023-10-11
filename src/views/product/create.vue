@@ -26,6 +26,7 @@
         :data="productItemInfos"
         :pagination="false"
         :bordered="false"
+        :actionColumn="actionColumn"
         size="small"
       />
       <!-- <BasicTable
@@ -120,8 +121,6 @@
             ifShow: () => {
               return true;
             },
-            // 根据权限控制是否显示: 有权限，会显示，支持多个
-            auth: ['basic_list'],
           },
         ],
       });

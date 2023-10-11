@@ -197,13 +197,13 @@
   import { getPagedList, create } from '@/api/client/index';
   import { columns, ClientList, ClientTypeHelper } from './columns';
   import { PlusOutlined, PlusCircleOutlined } from '@vicons/antd';
-  import { useRouter } from 'vue-router';
+  // import { useRouter } from 'vue-router';
   import { type FormRules } from 'naive-ui';
   import address from './address';
   import info from './info.vue';
   import { useDialog, useMessage } from 'naive-ui/lib';
 
-  const router = useRouter();
+  // const router = useRouter();
   const formRef: any = ref(null);
   const actionRef = ref();
   const showDetailModal = ref(false);
