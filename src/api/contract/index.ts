@@ -24,3 +24,10 @@ export function get(id) {
     method: 'get',
   });
 }
+
+export function down(id) {
+  return http.request({
+    url: `/${controller}/${id}`,
+    method: 'put',
+  });
+}
