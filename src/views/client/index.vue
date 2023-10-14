@@ -195,7 +195,7 @@
   import { h, reactive, ref, computed, toRaw } from 'vue';
   import { BasicTable, TableAction } from '@/components/Table';
   import { getPagedList, create } from '@/api/client/index';
-  import { columns, ClientList, ClientTypeHelper } from './columns';
+  import { columns, ClientList, ClientTypeHelper } from './datas';
   import { PlusOutlined, PlusCircleOutlined } from '@vicons/antd';
   // import { useRouter } from 'vue-router';
   import { type FormRules } from 'naive-ui';
@@ -439,3 +439,4 @@
 </script>
 
 <style lang="less" scoped></style>
+./datas

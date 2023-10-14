@@ -86,7 +86,7 @@
   // import { PlusOutlined } from '@vicons/antd';
   import productItemForm from './product-item-form.vue';
   import { useRouter } from 'vue-router';
-  import { ProductItem, productItemColumns } from './columns';
+  import { ProductItem, productItemColumns } from './datas';
   import { TableAction } from '@/components/Table';
   const router = useRouter();
   const showCreateProductItemModal = ref(false);

@@ -39,7 +39,7 @@
 
 <script lang="ts" setup>
   import { computed } from 'vue';
-  import { ClientType, ClientTypeHelper, ClientList } from './columns';
+  import { ClientType, ClientTypeHelper, ClientList } from './datas';
   const props = defineProps<{ client: ClientList }>();
   const client = props.client;
   const clientTypeDesc = computed(() => ClientTypeHelper.getDesc(client.clientType));
@@ -54,3 +54,4 @@
 </script>
 
 <style lang="less" scoped></style>
+./datas

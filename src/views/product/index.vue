@@ -42,7 +42,7 @@
   import { h, reactive, ref } from 'vue';
   import { BasicTable, TableAction } from '@/components/Table';
   import { getPagedList } from '@/api/product/index';
-  import { columns, ProductList } from './columns';
+  import { columns, ProductList } from './datas';
   import { PlusOutlined, PlusCircleOutlined } from '@vicons/antd';
   import { useRouter } from 'vue-router';
 
