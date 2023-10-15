@@ -29,6 +29,14 @@ const productList = (pageSize) => {
 export default [
   //表格数据列表
   {
+    url: '/api/product/simple',
+    timeout: 1000,
+    method: 'get',
+    response: ({ params }) => {
+      return resultSuccess(productList(30), { code: 200 });
+    },
+  },
+  {
     url: '/api/product',
     timeout: 1000,
     method: 'get',
