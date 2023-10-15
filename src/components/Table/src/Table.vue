@@ -18,7 +18,7 @@
       <slot name="tableTitle"></slot>
     </div>
 
-    <div class="flex items-center table-toolbar-right">
+    <div class="flex items-center table-toolbar-right" v-if="showToolBar">
       <!--顶部右侧区域-->
       <slot name="toolbar"></slot>
 
@@ -159,7 +159,7 @@
       const isStriped = ref(true);
       const tableData = ref<Recordable[]>([]);
       const innerPropsRef = ref<Partial<BasicTableProps>>();
-
+      const isShowToolBar = ref(true);
       const getProps = computed(() => {
         return { ...props, ...unref(innerPropsRef) } as BasicTableProps;
       });
@@ -292,6 +292,7 @@
 
       return {
         ...toRefs(state),
+        isShowToolBar,
         tableElRef,
         getBindValues,
         getDataSource,

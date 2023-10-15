@@ -42,7 +42,7 @@
 
 <script lang="ts" setup>
   import { computed } from 'vue';
-  import { ProductTypeHelper, ProductItem } from './columns';
+  import { ProductTypeHelper, ProductItem } from './datas';
   const props = defineProps<{ item: ProductItem }>();
   const productItemInfo = props.item;
   // const productItemInfo = reactive({

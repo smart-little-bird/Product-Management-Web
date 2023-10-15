@@ -28,19 +28,19 @@ const routes: Array<RouteRecordRaw> = [
     children: [
       {
         path: 'list',
-        name: 'contract_list',
+        name: 'contract-list',
         meta: {
           title: '合同信息',
         },
-        component: () => import('@/views/contract/list/index.vue'),
+        component: () => import('@/views/contract/index.vue'),
       },
       {
         path: 'create',
-        name: 'contract_create',
+        name: 'contract-create',
         meta: {
           title: '新建合同',
         },
-        component: () => import('@/views/contract/create/index.vue'),
+        component: () => import('@/views/contract/create.vue'),
       },
     ],
   },

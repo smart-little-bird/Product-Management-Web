@@ -56,4 +56,5 @@ export const basicProps = {
   },
   canResize: propTypes.bool.def(true),
   resizeHeightOffset: propTypes.number.def(0),
+  showToolBar: propTypes.bool.def(true),
 };

@@ -1,5 +1,5 @@
 <template>
-  <div> product create </div>
+  <div> contract list </div>
 </template>
 
 <script lang="ts" setup></script>

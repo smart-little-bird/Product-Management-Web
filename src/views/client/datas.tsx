@@ -55,13 +55,13 @@ export const columns: BasicColumn<ClientList>[] = [
     title: '客户名称',
     key: 'name',
     align: 'center',
-    width: 150,
+    width: '5%',
   },
   {
     title: '客户类型',
     key: 'clientType',
     align: 'center',
-    width: 100,
+    width: '5%',
     render(row) {
       return (
         <NTag
@@ -82,19 +82,56 @@ export const columns: BasicColumn<ClientList>[] = [
     },
   },
   {
-    title: '客户地址',
     align: 'center',
-    key: 'address',
-    render(row) {
-      return `${row.province} ${row.city} ${row.street}；邮编：${row.zipCode}`;
-    },
+    title: '客户税号',
+    key: 'tFN',
     width: 150,
+    ifShow: false,
+  },
+  {
+    align: 'center',
+    title: '客户银行抬头',
+    key: 'bankTitle',
+    ifShow: false,
+    width: 150,
+  },
+  {
+    align: 'center',
+    title: '客户银行账号',
+    key: 'bankAccount',
+    width: '10%',
+    ifShow: false,
+  },
+  {
+    align: 'center',
+    title: '开票电话',
+    key: 'billingTelephone',
+    width: 150,
+    ifShow: false,
+  },
+  {
+    align: 'center',
+    title: '联系电话',
+    key: 'contactNumber',
+    width: '10%',
+  },
+  {
+    align: 'center',
+    title: '客户邮箱',
+    key: 'email',
+    width: '15%',
+  },
+  {
+    align: 'center',
+    title: '客户传真',
+    key: 'fax',
+    width: '10%',
   },
   {
     align: 'center',
     title: '代理联系人',
     key: 'clientAgentName',
-    width: 150,
+    width: '5%',
     render(row) {
       return row.clientAgent.name;
     },
@@ -103,51 +140,18 @@ export const columns: BasicColumn<ClientList>[] = [
     align: 'center',
     title: '代理联系电话',
     key: 'clientAgentPhoneNumber',
-    width: 150,
+    width: '10%',
     render(row) {
       return row.clientAgent.phoneNumber;
     },
   },
   {
+    title: '客户地址',
     align: 'center',
-    title: '客户税号',
-    key: 'tFN',
-    width: 150,
-  },
-  {
-    align: 'center',
-    title: '客户银行抬头',
-    key: 'bankTitle',
-    width: 150,
-  },
-  {
-    align: 'center',
-    title: '客户银行账号',
-    key: 'bankAccount',
-    width: 150,
-  },
-  {
-    align: 'center',
-    title: '开票电话',
-    key: 'billingTelephone',
-    width: 150,
-  },
-  {
-    align: 'center',
-    title: '联系电话',
-    key: 'contactNumber',
-    width: 150,
-  },
-  {
-    align: 'center',
-    title: '客户邮箱',
-    key: 'email',
-    width: 150,
-  },
-  {
-    align: 'center',
-    title: '客户传真',
-    key: 'fax',
+    key: 'address',
+    render(row) {
+      return `${row.province} ${row.city} ${row.street}；邮编：${row.zipCode}`;
+    },
     width: 150,
   },
 ];

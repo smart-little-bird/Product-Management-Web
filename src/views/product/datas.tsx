@@ -43,18 +43,19 @@ export const columns: BasicColumn<ProductList>[] = [
     key: 'id',
     width: 100,
     align: 'center',
+    ifShow: false,
   },
   {
     title: '产品描述',
     key: 'description',
     align: 'center',
-    width: 150,
+    width: '40%',
   },
   {
     title: '入级描述',
     key: 'entryCriteria',
     align: 'center',
-    width: 100,
+    width: '40%',
   },
 ];
 const getProductTypeTagType = (productType: ProductType) => {
@@ -81,14 +82,21 @@ export const productItemColumns: BasicColumn<ProductItem>[] = [
   {
     title: '序号',
     key: 'id',
-    width: 100,
+    width: '5%',
     align: 'center',
+    ifShow: false,
   },
   {
-    title: '产品类型',
+    title: '名称',
+    key: 'name',
+    align: 'center',
+    width: '10%',
+  },
+  {
+    title: '类型',
     key: 'productType',
     align: 'center',
-    width: 100,
+    width: '5%',
     render(row) {
       return (
         <NTag bordered round size="medium" type={getProductTypeTagType(row.productType)}>
@@ -98,51 +106,45 @@ export const productItemColumns: BasicColumn<ProductItem>[] = [
     },
   },
   {
-    title: '名称',
-    key: 'name',
-    align: 'center',
-    width: 100,
-  },
-  {
     title: '规格',
     key: 'specifications',
     align: 'center',
-    width: 100,
+    width: '5%',
   },
   {
     title: '数量',
     key: 'amount',
     align: 'center',
-    width: 100,
+    width: '5%',
   },
   {
     title: '单价',
     key: 'unitPrice',
     align: 'center',
-    width: 100,
+    width: '5%',
   },
   {
     title: '单位',
     key: 'unit',
     align: 'center',
-    width: 100,
+    width: '5%',
   },
   {
     title: '材质',
     key: 'material',
     align: 'center',
-    width: 100,
+    width: '5%',
   },
   {
     title: '技术要求',
     key: 'technicalRequirements',
     align: 'center',
-    width: 100,
+    width: '10%',
   },
   {
     title: '备注',
     key: 'remark',
     align: 'center',
-    width: 150,
+    width: '15%',
   },
 ];

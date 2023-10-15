@@ -1,181 +1,69 @@
 <template>
-  <n-card :bordered="false" class="proCard">
-    <BasicTable
-      :columns="columns"
-      :request="loadDataTable"
-      :row-key="(row:ProductList) => row.id"
-      ref="actionRef"
-      :actionColumn="actionColumn"
-      @update:checked-row-keys="onCheckedRow"
-      :scroll-x="1090"
-    >
-      <template #tableTitle>
-        <n-space>
-          <n-button type="primary" @click="addProduct">
-            <template #icon>
-              <n-icon>
-                <PlusOutlined />
-              </n-icon>
-            </template>
-            新建产品
-          </n-button>
-          <n-upload>
-            <n-button type="success">
+  <div>
+    <n-card :bordered="false" class="proCard">
+      <BasicTable
+        :columns="columns"
+        :request="loadDataTable"
+        :row-key="(row:ProductList) => row.id"
+        ref="actionRef"
+        :actionColumn="actionColumn"
+        @update:checked-row-keys="onCheckedRow"
+        :scroll-x="1090"
+      >
+        <template #tableTitle>
+          <n-space>
+            <n-button type="primary" @click="addProduct">
               <template #icon>
                 <n-icon>
-                  <PlusCircleOutlined />
-                </n-icon> </template
-              >导入产品</n-button
-            >
-          </n-upload>
-        </n-space>
-      </template>
+                  <PlusOutlined />
+                </n-icon>
+              </template>
+              新建产品
+            </n-button>
+            <n-upload>
+              <n-button type="success">
+                <template #icon>
+                  <n-icon>
+                    <PlusCircleOutlined />
+                  </n-icon> </template
+                >导入产品</n-button
+              >
+            </n-upload>
+          </n-space>
+        </template>
 
-      <template #toolbar>
-        <!-- <n-button type="primary" @click="reloadTable">刷新数据</n-button> -->
-      </template>
-    </BasicTable>
-  </n-card>
+        <template #toolbar>
+          <!-- <n-button type="primary" @click="reloadTable">刷新数据</n-button> -->
+        </template>
+      </BasicTable>
+    </n-card>
+    <n-modal
+      style="max-width: 70%"
+      preset="card"
+      title="产品详情"
+      size="huge"
+      v-model:show="showDetailModal"
+    >
+      <info :product="showDetailProduct.product" />
+    </n-modal>
+  </div>
 </template>
 
 <script lang="ts" setup>
-  import { h, reactive, ref } from 'vue';
+  import { h, reactive, ref, toRaw } from 'vue';
   import { BasicTable, TableAction } from '@/components/Table';
   import { getPagedList } from '@/api/product/index';
   import { columns, ProductList } from './datas';
   import { PlusOutlined, PlusCircleOutlined } from '@vicons/antd';
   import { useRouter } from 'vue-router';
-
-  // const schemas: FormSchema[] = [
-  //   {
-  //     field: 'name',
-  //     labelMessage: '这是一个提示',
-  //     component: 'NInput',
-  //     label: '姓名',
-  //     componentProps: {
-  //       placeholder: '请输入姓名',
-  //       onInput: (e: any) => {
-  //         console.log(e);
-  //       },
-  //     },
-  //     rules: [{ required: true, message: '请输入姓名', trigger: ['blur'] }],
-  //   },
-  //   {
-  //     field: 'mobile',
-  //     component: 'NInputNumber',
-  //     label: '手机',
-  //     componentProps: {
-  //       placeholder: '请输入手机号码',
-  //       showButton: false,
-  //       onInput: (e: any) => {
-  //         console.log(e);
-  //       },
-  //     },
-  //   },
-  //   {
-  //     field: 'type',
-  //     component: 'NSelect',
-  //     label: '类型',
-  //     componentProps: {
-  //       placeholder: '请选择类型',
-  //       options: [
-  //         {
-  //           label: '舒适性',
-  //           value: 1,
-  //         },
-  //         {
-  //           label: '经济性',
-  //           value: 2,
-  //         },
-  //       ],
-  //       onUpdateValue: (e: any) => {
-  //         console.log(e);
-  //       },
-  //     },
-  //   },
-  //   {
-  //     field: 'makeDate',
-  //     component: 'NDatePicker',
-  //     label: '预约时间',
-  //     defaultValue: 1183135260000,
-  //     componentProps: {
-  //       type: 'date',
-  //       clearable: true,
-  //       onUpdateValue: (e: any) => {
-  //         console.log(e);
-  //       },
-  //     },
-  //   },
-  //   {
-  //     field: 'makeTime',
-  //     component: 'NTimePicker',
-  //     label: '停留时间',
-  //     componentProps: {
-  //       clearable: true,
-  //       onUpdateValue: (e: any) => {
-  //         console.log(e);
-  //       },
-  //     },
-  //   },
-  //   {
-  //     field: 'status',
-  //     label: '状态',
-  //     //插槽
-  //     slot: 'statusSlot',
-  //   },
-  //   {
-  //     field: 'makeProject',
-  //     component: 'NCheckbox',
-  //     label: '预约项目',
-  //     componentProps: {
-  //       placeholder: '请选择预约项目',
-  //       options: [
-  //         {
-  //           label: '种牙',
-  //           value: 1,
-  //         },
-  //         {
-  //           label: '补牙',
-  //           value: 2,
-  //         },
-  //         {
-  //           label: '根管',
-  //           value: 3,
-  //         },
-  //       ],
-  //       onUpdateChecked: (e: any) => {
-  //         console.log(e);
-  //       },
-  //     },
-  //   },
-  //   {
-  //     field: 'makeSource',
-  //     component: 'NRadioGroup',
-  //     label: '来源',
-  //     componentProps: {
-  //       options: [
-  //         {
-  //           label: '网上',
-  //           value: 1,
-  //         },
-  //         {
-  //           label: '门店',
-  //           value: 2,
-  //         },
-  //       ],
-  //       onUpdateChecked: (e: any) => {
-  //         console.log(e);
-  //       },
-  //     },
-  //   },
-  // ];
+  import info from './info.vue';
 
   const router = useRouter();
-  // const formRef: any = ref(null);
   const actionRef = ref();
 
   const showModal = ref(false);
-  // const formBtnLoading = ref(false);
+  const showDetailModal = ref(false);
+  const showDetailProduct = reactive({ product: {} as ProductList });
   // todo: 检验
   const formParams = reactive({
     id: null,
@@ -200,7 +88,7 @@
   });
 
   const actionColumn = reactive({
-    width: 200,
+    width: '20%',
     title: '操作',
     key: 'action',
     fixed: 'right',
@@ -226,12 +114,6 @@
       });
     },
   });
-
-  // const [register, { getFieldsValue }] = useForm({
-  //   gridProps: { cols: '1 s:1 m:2 l:3 xl:4 2xl:4' },
-  //   labelWidth: 80,
-  //   schemas,
-  // });
 
   function addProduct() {
     // showModal.value = true;
@@ -269,7 +151,8 @@
 
   function handleShowDetail(record: Recordable) {
     console.log('点击了查看详情', record);
-    router.push({ name: 'client-detail', params: { id: record.id } });
+    showDetailModal.value = true;
+    showDetailProduct.product = toRaw(record) as ProductList;
   }
   function handleEdit(record: Recordable) {
     console.log('点击了编辑', record);

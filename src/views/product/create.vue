@@ -21,15 +21,15 @@
       </n-form>
     </n-card>
     <n-card :bordered="false" class="mt-4 proCard" size="small" :segmented="{ content: true }">
-      <n-data-table
+      <!-- <n-data-table
         :columns="productItemColumns"
         :data="productItemInfos"
         :pagination="false"
         :bordered="false"
         :actionColumn="actionColumn"
         size="small"
-      />
-      <!-- <BasicTable
+      /> -->
+      <BasicTable
         :columns="productItemColumns"
         :row-key="(row: ProductItem) => row.id"
         ref="actionRef"
@@ -37,7 +37,11 @@
         :actionColumn="actionColumn"
         :scroll-x="1090"
         :pagination="false"
+        :showToolBar="false"
       >
+        <!-- <template #toolbar v-if="false">
+          <h1>111</h1>
+        </template> -->
         <template #tableTitle>
           <n-button type="primary" @click="showProductItemModal">
             <template #icon>
@@ -48,7 +52,7 @@
             添加产品明细
           </n-button>
         </template>
-      </BasicTable> -->
+      </BasicTable>
       <n-space justify="center">
         <n-button quaternary type="info" size="large" @click="showProductItemModal">
           添加产品明细
@@ -83,15 +87,18 @@
 
 <script lang="ts" setup>
   import { reactive, ref, h } from 'vue';
-  // import { PlusOutlined } from '@vicons/antd';
+  import { PlusOutlined } from '@vicons/antd';
   import productItemForm from './product-item-form.vue';
   import { useRouter } from 'vue-router';
   import { ProductItem, productItemColumns } from './datas';
-  import { TableAction } from '@/components/Table';
+  import { TableAction, BasicTable } from '@/components/Table';
   const router = useRouter();
+  const actionRef = ref();
+  // actionRef.value.state.isColumnSetting = false;
   const showCreateProductItemModal = ref(false);
   const productItemInfos = reactive([] as ProductItem[]);
   const productItemInfo = reactive({} as ProductItem);
+  // TODO: 加验证
   const goBack = () => {
     console.log('点击了返回产品列表页');
     router.push({ name: 'product-list' });

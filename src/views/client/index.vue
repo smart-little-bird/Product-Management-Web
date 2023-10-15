@@ -36,7 +36,7 @@
       </template>
     </BasicTable>
     <n-modal
-      style="max-width: 800px"
+      style="max-width: 40%"
       preset="card"
       title="客户详情"
       size="huge"
@@ -49,7 +49,7 @@
       :show-icon="false"
       preset="card"
       size="huge"
-      style="max-width: 800px"
+      style="max-width: 40%"
       title="新建"
     >
       <n-form
@@ -63,27 +63,27 @@
         <n-form-item label="客户Id" path="id" hidden v-show="false">
           <n-input placeholder="请输入客户Id" readonly v-model:value="formParams.id" hidden />
         </n-form-item>
-        <n-space justify="space-between" inline>
+        <n-space justify="start" inline>
           <n-form-item label="客户名称" path="name">
             <n-input
-              style="min-width: 200px; max-width: 300px"
+              style="width: 200px"
               placeholder="请输入客户名称"
               v-model:value="formParams.name"
             />
           </n-form-item>
           <n-form-item label="客户类型" path="clientType">
             <n-select
-              style="min-width: 200px; max-width: 300px"
+              style="width: 200px"
               v-model:value="formParams.clientType"
               placeholder="请选择客户类型"
               :options="clientTypeSelectOptions"
             />
           </n-form-item>
-        </n-space>
-        <n-space justify="space-between" inline>
+        <!-- </n-space>
+        <n-space justify="space-between" inline> -->
           <n-form-item label="地址" path="city">
             <n-cascader
-              style="min-width: 200px; max-width: 300px"
+              style="width: 200px"
               :show-path="true"
               v-model:value="formParams.city"
               placeholder="选择省市"
@@ -94,86 +94,86 @@
           </n-form-item>
           <n-form-item label="街道" path="street">
             <n-input
-              style="min-width: 200px; max-width: 300px"
+              style="width: 200px"
               placeholder="请输入街道"
               v-model:value="formParams.street"
             />
           </n-form-item>
           <n-form-item label="邮编" path="zipCode">
             <n-input
-              style="min-width: 200px; max-width: 300px"
+              style="width: 200px"
               placeholder="请输入邮编"
               v-model:value="formParams.zipCode"
             />
           </n-form-item>
-        </n-space>
-        <n-space justify="space-between" inline>
+        <!-- </n-space>
+        <n-space justify="space-between" inline> -->
           <n-form-item label="代理人名称" path="clientAgent.name">
             <n-input
-              style="min-width: 200px; max-width: 300px"
+              style="width: 200px"
               placeholder="请输入代理人名称"
               v-model:value="formParams.clientAgent.name"
             />
           </n-form-item>
           <n-form-item label="代理人联系电话" path="clientAgent.phoneNumber">
             <n-input
-              style="min-width: 200px; max-width: 300px"
+              style="width: 200px"
               placeholder="请输入代理人联系电话"
               v-model:value="formParams.clientAgent.phoneNumber"
             />
           </n-form-item>
-        </n-space>
-        <n-space justify="space-between" inline>
+        <!-- </n-space>
+        <n-space justify="space-between" inline> -->
           <n-form-item label="银行抬头" path="bankTitle">
             <n-input
-              style="min-width: 200px; max-width: 300px"
+              style="width: 200px"
               placeholder="请输入客户银行抬头"
               v-model:value="formParams.bankTitle"
             />
           </n-form-item>
           <n-form-item label="银行账号" path="bankAccount">
             <n-input
-              style="min-width: 200px; max-width: 300px"
+              style="width: 200px"
               placeholder="请输入客户银行账号"
               v-model:value="formParams.bankAccount"
             />
           </n-form-item>
           <n-form-item label="客户税号" path="tFN">
             <n-input
-              style="min-width: 200px; max-width: 300px"
+              style="width: 200px"
               placeholder="请输入客户税号"
               v-model:value="formParams.tFN"
             />
           </n-form-item>
-        </n-space>
+        <!-- </n-space>
 
-        <n-space justify="space-between" inline>
+        <n-space justify="space-between" inline> -->
           <n-form-item label="开票电话" path="billingTelephone">
             <n-input
-              style="min-width: 200px; max-width: 300px"
+              style="width: 200px"
               placeholder="请输入客户开票电话"
               v-model:value="formParams.billingTelephone"
             />
           </n-form-item>
           <n-form-item label="客户传真" path="fax">
             <n-input
-              style="min-width: 200px; max-width: 300px"
+              style="width: 200px"
               placeholder="请输入客户传真"
               v-model:value="formParams.fax"
             />
           </n-form-item>
-        </n-space>
-        <n-space justify="space-between" inline>
+        <!-- </n-space>
+        <n-space justify="space-between" inline> -->
           <n-form-item label="联系电话" path="contactNumber">
             <n-input
-              style="min-width: 200px; max-width: 300px"
+              style="width: 200px"
               placeholder="请输入客户联系电话"
               v-model:value="formParams.contactNumber"
             />
           </n-form-item>
           <n-form-item label="客户邮箱" path="email">
             <n-input
-              style="min-width: 200px; max-width: 300px"
+              style="width: 200px"
               placeholder="请输入客户邮箱"
               v-model:value="formParams.email"
             />
@@ -338,7 +338,7 @@
     formParams.value.province = pathValues[0].value;
   };
   const actionColumn = reactive({
-    width: 250,
+    width: '15%',
     title: '操作',
     key: 'action',
     fixed: 'right',
