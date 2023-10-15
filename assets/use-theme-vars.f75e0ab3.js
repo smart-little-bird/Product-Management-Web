@@ -1,0 +1,1 @@
+import{ct as i,fA as t,ae as c,fB as m}from"./index.f60d6bba.js";function u(){const n=i(t,null);return c(()=>{if(n===null)return m;const{mergedThemeRef:{value:r},mergedThemeOverridesRef:{value:e}}=n,o=(r==null?void 0:r.common)||m;return e!=null&&e.common?Object.assign({},o,e.common):o})}export{u};
