@@ -28,7 +28,7 @@ export interface ProductItem {
   productType: ProductType;
   name: string;
   specifications: string;
-  amount: string;
+  amount: number;
   unitPrice: number;
   unit: string;
   material: string;

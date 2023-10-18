@@ -11,7 +11,7 @@
     >
       <template #tableTitle>
         <n-space>
-          <n-button type="primary" @click="addTable">
+          <n-button type="primary" @click="addClient">
             <template #icon>
               <n-icon>
                 <PlusOutlined />
@@ -192,7 +192,7 @@
 </template>
 
 <script lang="ts" setup>
-  import { h, reactive, ref, computed, toRaw } from 'vue';
+  import { h, reactive, ref, computed, toRaw, onMounted } from 'vue';
   import { BasicTable, TableAction } from '@/components/Table';
   import { getPagedList, create } from '@/api/client/index';
   import { columns, ClientList, ClientTypeHelper } from './datas';
@@ -202,8 +202,11 @@
   import address from './address';
   import info from './info.vue';
   import { useDialog, useMessage } from 'naive-ui/lib';
+  import { useRoute } from 'vue-router';
 
   // const router = useRouter();
+  const route = useRoute();
+  const { showCreate } = route.query;
   const formRef: any = ref(null);
   const actionRef = ref();
   const showDetailModal = ref(false);
@@ -364,8 +367,8 @@
     },
   });
 
-  function addTable() {
-    formParams.value = initialFormValue;
+  function addClient() {
+    formParams.value = { ...initialFormValue };
     showModal.value = true;
   }
 
@@ -436,7 +439,10 @@
   // function handleReset(values: Recordable) {
   //   console.log(values);
   // }
+  onMounted(() => {
+    showModal.value = Number(showCreate) == 1;
+  });
+  console.log(route);
 </script>
 
 <style lang="less" scoped></style>
-./datas

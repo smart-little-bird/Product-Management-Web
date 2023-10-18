@@ -23,7 +23,11 @@
             remote
           />
           <!-- @search="handleSearch" -->
+          <n-button quaternary type="info" @click="handleGoToClientCreate">
+            客户未创建？请点击前往创建客户
+          </n-button>
         </n-form-item>
+
         <!-- <n-form-item label="产品描述" path="description">
           <n-input placeholder="产品描述" v-model:value="productInfo.description" />
         </n-form-item> -->
@@ -79,7 +83,7 @@
 </template>
 
 <script lang="ts" setup>
-  import { reactive, ref, h } from 'vue';
+  import { reactive, ref } from 'vue';
   import { getList as getClientList } from '@/api/client';
   import { getList as getProductList } from '@/api/product';
   import { SelectOption } from 'naive-ui/lib/select';
@@ -122,6 +126,9 @@
   const goBack = () => {
     console.log('点击了返回合同列表页');
     router.push({ name: 'contract-list' });
+  };
+  const handleGoToClientCreate = () => {
+    router.push({ name: 'client-list', query: { showCreate: 1 } });
   };
   fetchClient();
   fetchProduct();
