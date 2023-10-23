@@ -53,11 +53,11 @@
           </n-button>
         </template>
       </BasicTable>
-      <n-space justify="center">
+      <!-- <n-space justify="center">
         <n-button quaternary type="info" size="large" @click="showProductItemModal">
           添加产品明细
         </n-button>
-      </n-space>
+      </n-space> -->
     </n-card>
     <n-modal
       v-model:show="showCreateProductItemModal"

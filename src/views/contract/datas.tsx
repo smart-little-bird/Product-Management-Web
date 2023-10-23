@@ -1,15 +1,10 @@
 import { BasicColumn } from '@/components/Table';
+import { NTag } from 'naive-ui';
 
 export interface CreateContractCommand {
-  id: number;
+  id?: number;
   clientId: string;
   isCombineFax: boolean;
-  clientName: string;
-  phone: string;
-  bankAccount: string;
-  street: string;
-  city: string;
-  province: string;
   contractItems: ContractItem[];
   contractPayMethod: ContractPayMethod;
   contractShippingInfo: ContractShippingInfo;
@@ -100,6 +95,59 @@ export const contractColumns: BasicColumn<ContractList>[] = [
   {
     title: '总价',
     key: 'totalPrice',
+    align: 'center',
+    width: '10%',
+  },
+];
+
+export const contractItemColumns: BasicColumn<ContractItem>[] = [
+  {
+    title: '序号',
+    key: 'productId',
+    width: '5%',
+    align: 'center',
+    ifShow: false,
+  },
+  {
+    title: '产品名称',
+    key: 'productName',
+    align: 'center',
+    width: '10%',
+  },
+  {
+    title: '是否独立产品',
+    key: 'isIndependent',
+    align: 'center',
+    width: '10%',
+    render(row) {
+      return (
+        <NTag bordered round size="medium" type={row.isIndependent ? 'success' : 'default'}>
+          {{ default: () => (row.isIndependent ? '是' : '否') }}
+        </NTag>
+      );
+    },
+  },
+  {
+    title: '材质',
+    key: 'material',
+    align: 'center',
+    width: '10%',
+  },
+  {
+    title: '单价',
+    key: 'unitPrice',
+    align: 'center',
+    width: '10%',
+  },
+  {
+    title: '单位',
+    key: 'unit',
+    align: 'center',
+    width: '10%',
+  },
+  {
+    title: '总计',
+    key: 'amount',
     align: 'center',
     width: '10%',
   },
