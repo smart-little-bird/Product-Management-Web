@@ -42,7 +42,6 @@ export default [
     method: 'get',
     response: ({ query }) => {
       const { page, pageSize } = query;
-      debugger;
       const list = productList(Number(pageSize));
       return resultPageSuccess(Number(page), Number(pageSize), list);
     },

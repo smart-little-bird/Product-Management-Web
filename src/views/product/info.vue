@@ -9,7 +9,7 @@
         :columns="productItemColumns"
         :row-key="(row: ProductItem) => row.id"
         ref="actionRef"
-        :dataSource="product.productItemDtos"
+        :dataSource="product.productListItemDtos"
         :scroll-x="1090"
         :pagination="false"
         :showToolBar="false"

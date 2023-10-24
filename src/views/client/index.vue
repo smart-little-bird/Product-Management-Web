@@ -365,9 +365,7 @@
   }
 
   const loadDataTable = async (res) => {
-    const data = await getPagedList({ ...res });
-    console.timeLog(data);
-    return data;
+    return await getPagedList({ ...res });
   };
 
   function onCheckedRow(rowKeys) {

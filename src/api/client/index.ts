@@ -11,14 +11,13 @@ export function getPagedList(params) {
       params,
     })
     .then((data) => {
-      // return data;
       return {
         list: data.clientListDtos,
-        pageIndex: data.page.pageIndex,
+        page: data.page.pageIndex,
         pageSize: data.page.pageSize,
         total: data.page.total,
+        pageCount: data.clientListDtos.length,
       };
-      return data;
     });
 }
 

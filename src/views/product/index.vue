@@ -31,10 +31,6 @@
             </n-upload>
           </n-space>
         </template>
-
-        <template #toolbar>
-          <!-- <n-button type="primary" @click="reloadTable">刷新数据</n-button> -->
-        </template>
       </BasicTable>
     </n-card>
     <n-modal
@@ -57,36 +53,14 @@
   import { PlusOutlined, PlusCircleOutlined } from '@vicons/antd';
   import { useRouter } from 'vue-router';
   import info from './info.vue';
-
+  import { remove } from '@/api/product';
+  import { useDialog, useMessage } from 'naive-ui';
   const router = useRouter();
   const actionRef = ref();
-
-  const showModal = ref(false);
+  const dialog = useDialog();
+  const message = useMessage();
   const showDetailModal = ref(false);
   const showDetailProduct = reactive({ product: {} as ProductList });
-  // todo: 检验
-  const formParams = reactive({
-    id: null,
-    name: '',
-    clientType: null,
-    date: null,
-    province: null,
-    city: null,
-    street: null,
-    zipCode: null,
-    clientAgent: {
-      name: null,
-      phoneNumber: null,
-    },
-    tfn: null,
-    bankTitle: null,
-    bankAccount: null,
-    billingTelephone: null,
-    contactNumber: null,
-    email: null,
-    fax: null,
-  });
-
   const actionColumn = reactive({
     width: '20%',
     title: '操作',
@@ -116,7 +90,6 @@
   });
 
   function addProduct() {
-    // showModal.value = true;
     router.push({ name: 'product-create' });
   }
 
@@ -128,27 +101,6 @@
     console.log(rowKeys);
   }
 
-  // function reloadTable() {
-  //   actionRef.value.reload();
-  // }
-
-  // function confirmForm(e) {
-  //   e.preventDefault();
-  //   formBtnLoading.value = true;
-  //   formRef.value.validate((errors) => {
-  //     if (!errors) {
-  //       window['$message'].success('新建成功');
-  //       setTimeout(() => {
-  //         showModal.value = false;
-  //         // reloadTable();
-  //       });
-  //     } else {
-  //       window['$message'].error('请填写完整信息');
-  //     }
-  //     formBtnLoading.value = false;
-  //   });
-  // }
-
   function handleShowDetail(record: Recordable) {
     console.log('点击了查看详情', record);
     showDetailModal.value = true;
@@ -156,24 +108,25 @@
   }
   function handleEdit(record: Recordable) {
     console.log('点击了编辑', record);
-    showModal.value = true;
-    formParams.id = record.id;
-    // todo: formParams 赋值
+    router.push({ name: 'product-create', query: { productId: record.id } });
   }
 
   function handleDelete(record: Recordable) {
     console.log('点击了删除', record);
-    window['$message'].info('点击了删除');
+    dialog.error({
+      title: '提示',
+      content: `您想删除 【${record.description}】`,
+      positiveText: '确定',
+      negativeText: '取消',
+      onPositiveClick: () => {
+        remove(record.id).then(() => {
+          message.success('删除成功');
+          actionRef.value.reload();
+        });
+      },
+      onNegativeClick: () => {},
+    });
   }
-
-  // function handleSubmit(values: Recordable) {
-  //   console.log(values);
-  //   reloadTable();
-  // }
-
-  // function handleReset(values: Recordable) {
-  //   console.log(values);
-  // }
 </script>
 
 <style lang="less" scoped></style>

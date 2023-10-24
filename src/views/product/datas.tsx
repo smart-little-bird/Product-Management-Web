@@ -5,7 +5,7 @@ export interface ProductList {
   id: number;
   description: string;
   entryCriteria: string;
-  productItemDtos: ProductItem[];
+  productListItemDtos: ProductItem[];
 }
 export enum ProductType {
   Shafting,
@@ -96,11 +96,11 @@ export const productItemColumns: BasicColumn<ProductItem>[] = [
     title: '类型',
     key: 'productType',
     align: 'center',
-    width: '5%',
+    width: '10%',
     render(row) {
       return (
-        <NTag bordered round size="medium" type={getProductTypeTagType(row.productType)}>
-          {{ default: () => ProductTypeHelper.getDesc(row.productType) }}
+        <NTag bordered round size="medium" type={getProductTypeTagType(Number(row.productType))}>
+          {{ default: () => ProductTypeHelper.getDesc(Number(row.productType)) }}
         </NTag>
       );
     },
@@ -109,31 +109,31 @@ export const productItemColumns: BasicColumn<ProductItem>[] = [
     title: '规格',
     key: 'specifications',
     align: 'center',
-    width: '5%',
+    width: '10%',
   },
   {
     title: '数量',
     key: 'amount',
     align: 'center',
-    width: '5%',
+    width: '10%',
   },
   {
     title: '单价',
     key: 'unitPrice',
     align: 'center',
-    width: '5%',
+    width: '10%',
   },
   {
     title: '单位',
     key: 'unit',
     align: 'center',
-    width: '5%',
+    width: '10%',
   },
   {
     title: '材质',
     key: 'material',
     align: 'center',
-    width: '5%',
+    width: '10%',
   },
   {
     title: '技术要求',

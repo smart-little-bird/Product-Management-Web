@@ -79,7 +79,7 @@
             <n-input
               style="width: 80px"
               v-for="(payPercent, index) in createContractCommand.contractPayMethod.payPercents"
-              :key="index"
+              :key="index + payPercent"
               v-model="createContractCommand.contractPayMethod.payPercents[index]"
             />
             <n-button
@@ -108,9 +108,6 @@
           :pagination="false"
           :showToolBar="false"
         >
-          <!-- <template #toolbar v-if="false">
-          <h1>111</h1>
-        </template> -->
           <template #tableTitle>
             <n-button type="primary" @click="() => (showCreateContractItemModal = true)">
               <template #icon>
@@ -183,11 +180,6 @@
     { label: '有定金', value: 1 },
     { label: '全款', value: 2 },
   ]);
-  // const paymentTypeMap = [
-  //   { label: '无定金', value: 0 },
-  //   { label: '有定金', value: 1 },
-  //   { label: '全款', value: 2 },
-  // ];
   const selectProductCheckboxs = ref<{ label: string; value: number }[]>([]);
   const selectProducts = ref<ContractItem[]>([]);
   const router = useRouter();
@@ -251,9 +243,6 @@
   onMounted(() => {
     fetchClient();
     fetchProduct();
-    // if (route.query.clientId) {
-    //   createContractCommand.clientId = route.query.clientId as string;
-    // }
   });
 </script>
 

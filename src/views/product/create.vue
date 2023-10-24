@@ -11,13 +11,30 @@
         class="py-4"
       >
         <n-form-item label="客户Id" path="id" hidden v-show="false">
-          <n-input placeholder="客户Id" readonly v-model:value="productInfo.id" hidden />
+          <n-input-number
+            clearable
+            :disabled="isEdit"
+            placeholder="客户Id"
+            readonly
+            v-model:value="productInfo.id"
+            hidden
+          />
         </n-form-item>
         <n-form-item label="产品描述" path="description">
-          <n-input placeholder="产品描述" v-model:value="productInfo.description" />
+          <n-input
+            :disabled="isEdit"
+            clearable
+            placeholder="产品描述"
+            v-model:value="productInfo.description"
+          />
         </n-form-item>
         <n-form-item label="入级描述" path="entryCriteria">
-          <n-input placeholder="入级描述" v-model:value="productInfo.entryCriteria" />
+          <n-input
+            :disabled="isEdit"
+            clearable
+            placeholder="入级描述"
+            v-model:value="productInfo.entryCriteria"
+          />
         </n-form-item>
       </n-form>
     </n-card>
@@ -26,7 +43,7 @@
         :columns="productItemColumns"
         :row-key="(row: ProductItem) => row.id"
         ref="actionRef"
-        :dataSource="productItemInfos"
+        :dataSource="productInfo.productListItemDtos"
         :actionColumn="actionColumn"
         :scroll-x="1090"
         :pagination="false"
@@ -55,7 +72,7 @@
       <product-item-form :item="productItemInfo" />
       <template #footer>
         <n-space justify="center">
-          <n-button @click="() => (showCreateProductItemModal = false)">取消</n-button>
+          <n-button @click="cancelAddProductItem">取消</n-button>
           <n-button type="info" @click="addProductItem">确定</n-button>
         </n-space>
       </template>
@@ -64,26 +81,29 @@
     <n-card :bordered="false" class="mt-4 proCard" size="small" :segmented="{ content: true }">
       <n-space justify="center">
         <n-button type="default" @click="goBack"> 返回 </n-button>
-        <n-button type="success" @click="goBack"> 提交 </n-button>
+        <n-button type="success" @click="submitForm"> 提交 </n-button>
       </n-space>
     </n-card>
   </div>
 </template>
 
 <script lang="ts" setup>
-  import { reactive, ref, h } from 'vue';
+  import { reactive, ref, h, onMounted, computed } from 'vue';
   import { PlusOutlined } from '@vicons/antd';
   import productItemForm from './product-item-form.vue';
-  import { useRouter } from 'vue-router';
+  import { useRouter, useRoute } from 'vue-router';
   import { ProductItem, productItemColumns } from './datas';
   import { TableAction, BasicTable } from '@/components/Table';
   import { FormRules } from 'naive-ui';
+  import { create, getList } from '@/api/product';
+
   const router = useRouter();
-  const actionRef = ref();
+  const route = useRoute();
+  const productId = route.query.productId;
+  const isEdit = computed(() => productId !== undefined);
+  const productFormRef = ref();
   const showCreateProductItemModal = ref(false);
-  const productItemInfos = reactive([] as ProductItem[]);
-  const productItemInfo = reactive({} as ProductItem);
-  // TODO: 加验证
+  const productItemInfo = ref({} as ProductItem);
   const rules: FormRules = {
     description: {
       required: true,
@@ -95,18 +115,6 @@
       trigger: ['blur', 'input'],
       message: '请输入入级描述',
     },
-  };
-  const goBack = () => {
-    console.log('点击了返回产品列表页');
-    router.push({ name: 'product-list' });
-  };
-  const showProductItemModal = () => {
-    showCreateProductItemModal.value = true;
-  };
-  const addProductItem = () => {
-    // productItemInfo.id = productItemInfos.length + 1;
-    productItemInfos.push(productItemInfo);
-    showCreateProductItemModal.value = false;
   };
   const actionColumn = reactive({
     width: 200,
@@ -121,21 +129,58 @@
         actions: [
           {
             label: '删除',
-            onClick: () => {},
-            // 根据业务控制是否显示 isShow 和 auth 是并且关系
-            ifShow: () => {
-              return true;
+            onClick: () => {
+              productInfo.value.productListItemDtos = productInfo.value.productListItemDtos.filter(
+                (d) => d.id != record.id
+              );
             },
+            ifShow: true,
           },
         ],
       });
     },
   });
-  const productInfo = reactive({
+  let productInfoOrigin = {
     id: null,
     description: null,
     entryCriteria: null,
-    productItemDtos: [] as ProductItem[],
+    productListItemDtos: [] as ProductItem[],
+  };
+  const productInfo = ref({ ...productInfoOrigin });
+  const goBack = () => {
+    console.log('点击了返回产品列表页');
+    router.push({ name: 'product-list' });
+  };
+  const showProductItemModal = () => {
+    showCreateProductItemModal.value = true;
+    productItemInfo.value = {} as ProductItem;
+  };
+  const cancelAddProductItem = () => {
+    showCreateProductItemModal.value = false;
+  };
+  const addProductItem = () => {
+    productInfo.value.productListItemDtos.push(productItemInfo.value);
+    showCreateProductItemModal.value = false;
+  };
+  const submitForm = (e) => {
+    e.preventDefault();
+    showCreateProductItemModal.value = false;
+    productFormRef.value.validate(async (errors) => {
+      if (!errors) {
+        await create(productInfo);
+        window['$message'].success('新建成功');
+        router.push({ name: 'product-list' });
+      } else {
+        window['$message'].error('请填写完整信息');
+      }
+    });
+  };
+  onMounted(() => {
+    getList().then((d) => {
+      productInfoOrigin = d.filter((_) => _.id == productId)[0];
+      productInfo.value = { ...productInfoOrigin };
+      console.log(productInfo.value);
+    });
   });
 </script>
 
