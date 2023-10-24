@@ -11,11 +11,11 @@ export function getPagedList(params) {
     })
     .then((data) => {
       return {
-        list: data.productListDtos,
-        page: data.page.pageIndex,
-        pageSize: data.page.pageSize,
-        total: data.page.total,
-        pageCount: data.productListDtos.length,
+        list: data?.productListDtos,
+        page: data?.page?.pageIndex,
+        pageSize: data?.page?.pageSize,
+        total: data?.page?.total,
+        pageCount: data?.productListDtos?.length,
       };
     });
 }

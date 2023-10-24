@@ -94,11 +94,12 @@
   import { useRouter, useRoute } from 'vue-router';
   import { ProductItem, productItemColumns } from './datas';
   import { TableAction, BasicTable } from '@/components/Table';
-  import { FormRules } from 'naive-ui';
-  import { create, getList } from '@/api/product';
+  import { FormRules, useMessage } from 'naive-ui';
+  import { create, getList, update } from '@/api/product';
 
   const router = useRouter();
   const route = useRoute();
+  const message = useMessage();
   const productId = route.query.productId;
   const isEdit = computed(() => productId !== undefined);
   const productFormRef = ref();
@@ -167,11 +168,15 @@
     showCreateProductItemModal.value = false;
     productFormRef.value.validate(async (errors) => {
       if (!errors) {
-        await create(productInfo);
-        window['$message'].success('新建成功');
+        if (isEdit.value) {
+          await update(productInfo);
+        } else {
+          await create(productInfo);
+        }
+        message.success(isEdit.value ? '编辑成功' : '新建成功');
         router.push({ name: 'product-list' });
       } else {
-        window['$message'].error('请填写完整信息');
+        message.error('操作失败');
       }
     });
   };
