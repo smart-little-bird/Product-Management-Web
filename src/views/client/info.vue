@@ -21,7 +21,7 @@
       }}</n-descriptions-item>
       <n-descriptions-item label="客户银行抬头">{{ client.bankTitle }}</n-descriptions-item>
       <n-descriptions-item label="客户银行账号">{{ client.bankAccount }}</n-descriptions-item>
-      <n-descriptions-item label="客户税号">{{ client.tFN }}</n-descriptions-item>
+      <n-descriptions-item label="客户税号">{{ client.tfn }}</n-descriptions-item>
       <n-descriptions-item label="开票电话">{{ client.billingTelephone }}</n-descriptions-item>
       <n-descriptions-item label="联系方式"
         >{{ client.contactNumber }} / {{ client.email }}</n-descriptions-item

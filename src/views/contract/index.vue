@@ -69,7 +69,7 @@
       name: null,
       phoneNumber: null,
     },
-    tFN: null,
+    tfn: null,
     bankTitle: null,
     bankAccount: null,
     billingTelephone: null,

@@ -12,14 +12,53 @@ export interface BasicPageParams {
   total: number;
 }
 
+const adminInfo = {
+  userId: '1',
+  username: 'admin',
+  realName: 'Admin',
+  avatar: '',
+  desc: 'manager',
+  password: '123456',
+  token: '123456',
+  permissions: [
+    {
+      label: '主控台',
+      value: 'dashboard_console',
+    },
+    {
+      label: '监控页',
+      value: 'dashboard_monitor',
+    },
+    {
+      label: '工作台',
+      value: 'dashboard_workplace',
+    },
+    {
+      label: '基础列表',
+      value: 'basic_list',
+    },
+    {
+      label: '基础列表删除',
+      value: 'basic_list_delete',
+    },
+  ],
+};
+
 /**
  * @description: 获取用户信息
  */
 export function getUserInfo() {
-  return http.request({
-    url: '/admin_info',
-    method: 'get',
-  });
+  return adminInfo;
+  // return {
+  //   code: 200,
+  //   result: adminInfo,
+  //   message: 'success',
+  //   type: 'success',
+  // };
+  // return http.request({
+  //   url: '/admin_info',
+  //   method: 'get',
+  // });
 }
 
 /**

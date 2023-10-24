@@ -48,7 +48,7 @@ const routes: Array<RouteRecordRaw> = [
         path: 'create',
         name: 'product-create',
         meta: {
-          title: '新建产品',
+          title: '产品编辑',
         },
         component: () => import('@/views/product/create.vue'),
       },

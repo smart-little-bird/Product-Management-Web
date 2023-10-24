@@ -20,7 +20,7 @@
               </template>
               新建产品
             </n-button>
-            <n-upload>
+            <n-upload hidden>
               <n-button type="success">
                 <template #icon>
                   <n-icon>
@@ -78,7 +78,7 @@
       name: null,
       phoneNumber: null,
     },
-    tFN: null,
+    tfn: null,
     bankTitle: null,
     bankAccount: null,
     billingTelephone: null,

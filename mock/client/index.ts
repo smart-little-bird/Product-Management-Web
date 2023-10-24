@@ -13,7 +13,7 @@ const clientList = (pageSize) => {
       province: '@province()',
       zipCode: '@zip()',
       clientAgent: { name: '@cname()', phoneNumber: '@string("number", 11, 11 )' },
-      tFN: '@string()',
+      tfn: '@string()',
       bankTitle: '@ctitle()',
       bankAccount: '@ctitle()',
       billingTelephone: '@string("number", 11, 11)',

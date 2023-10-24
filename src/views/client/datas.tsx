@@ -23,7 +23,7 @@ export interface ClientList {
   province: string;
   zipCode: string;
   clientAgent: ClientAgent;
-  tFN: string;
+  tfn: string;
   bankTitle: string;
   bankAccount: string;
   billingTelephone: string;
@@ -55,13 +55,13 @@ export const columns: BasicColumn<ClientList>[] = [
     title: '客户名称',
     key: 'name',
     align: 'center',
-    width: '5%',
+    width: '10%',
   },
   {
     title: '客户类型',
     key: 'clientType',
     align: 'center',
-    width: '5%',
+    width: '10%',
     render(row) {
       return (
         <NTag
@@ -84,7 +84,7 @@ export const columns: BasicColumn<ClientList>[] = [
   {
     align: 'center',
     title: '客户税号',
-    key: 'tFN',
+    key: 'tfn',
     width: 150,
     ifShow: false,
   },
@@ -131,7 +131,7 @@ export const columns: BasicColumn<ClientList>[] = [
     align: 'center',
     title: '代理联系人',
     key: 'clientAgentName',
-    width: '5%',
+    width: '10%',
     render(row) {
       return row.clientAgent.name;
     },

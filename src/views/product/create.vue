@@ -7,6 +7,7 @@
         label-placement="left"
         :label-width="'auto'"
         inline
+        :rules="rules"
         class="py-4"
       >
         <n-form-item label="客户Id" path="id" hidden v-show="false">
@@ -21,14 +22,6 @@
       </n-form>
     </n-card>
     <n-card :bordered="false" class="mt-4 proCard" size="small" :segmented="{ content: true }">
-      <!-- <n-data-table
-        :columns="productItemColumns"
-        :data="productItemInfos"
-        :pagination="false"
-        :bordered="false"
-        :actionColumn="actionColumn"
-        size="small"
-      /> -->
       <BasicTable
         :columns="productItemColumns"
         :row-key="(row: ProductItem) => row.id"
@@ -39,9 +32,6 @@
         :pagination="false"
         :showToolBar="false"
       >
-        <!-- <template #toolbar v-if="false">
-          <h1>111</h1>
-        </template> -->
         <template #tableTitle>
           <n-button type="primary" @click="showProductItemModal">
             <template #icon>
@@ -53,11 +43,6 @@
           </n-button>
         </template>
       </BasicTable>
-      <!-- <n-space justify="center">
-        <n-button quaternary type="info" size="large" @click="showProductItemModal">
-          添加产品明细
-        </n-button>
-      </n-space> -->
     </n-card>
     <n-modal
       v-model:show="showCreateProductItemModal"
@@ -92,13 +77,25 @@
   import { useRouter } from 'vue-router';
   import { ProductItem, productItemColumns } from './datas';
   import { TableAction, BasicTable } from '@/components/Table';
+  import { FormRules } from 'naive-ui';
   const router = useRouter();
   const actionRef = ref();
-  // actionRef.value.state.isColumnSetting = false;
   const showCreateProductItemModal = ref(false);
   const productItemInfos = reactive([] as ProductItem[]);
   const productItemInfo = reactive({} as ProductItem);
   // TODO: 加验证
+  const rules: FormRules = {
+    description: {
+      required: true,
+      trigger: ['blur', 'input'],
+      message: '请输入产品描述',
+    },
+    entryCriteria: {
+      required: true,
+      trigger: ['blur', 'input'],
+      message: '请输入入级描述',
+    },
+  };
   const goBack = () => {
     console.log('点击了返回产品列表页');
     router.push({ name: 'product-list' });

@@ -3,7 +3,7 @@ import { NTag } from 'naive-ui';
 
 export interface CreateContractCommand {
   id?: number;
-  clientId: string;
+  clientId?: number;
   isCombineFax: boolean;
   contractItems: ContractItem[];
   contractPayMethod: ContractPayMethod;

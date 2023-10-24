@@ -15,7 +15,7 @@
         <n-form-item label="目标客户" path="clientId">
           <n-select
             style="width: 200px"
-            v-model="createContractCommand.clientId"
+            v-model:value="createContractCommand.clientId"
             placeholder="请选择客户"
             :options="selectClientOptions"
             :loading="loadingClient"
@@ -123,20 +123,6 @@
           </template>
         </BasicTable>
       </n-card>
-      <!-- <n-card :bordered="false" class="mt-5 proCard" size="small" :segmented="{ content: true }">
-        <n-space justify="center" v-if="!loadingProduct">
-          <n-spin size="large" />
-        </n-space>
-        <n-form-item label="选择产品" path="product" size="large" v-if="loadingProduct">
-          <n-checkbox-group :value="selectProducts">
-            <n-grid :x-gap="48" :y-gap="48" :cols="8">
-              <n-gi v-for="p in selectProductCheckboxs" :key="p.value">
-                <n-checkbox size="large" :value="p.value" :label="p.label" />
-              </n-gi>
-            </n-grid>
-          </n-checkbox-group>
-        </n-form-item>
-      </n-card> -->
     </n-form>
     <n-card :bordered="false" class="mt-5 proCard" size="small" :segmented="{ content: true }">
       <n-space justify="center">
@@ -164,20 +150,21 @@
 </template>
 
 <script lang="ts" setup>
-  import { reactive, ref, h } from 'vue';
+  import { reactive, ref, h, onMounted } from 'vue';
   import { getList as getClientList } from '@/api/client';
   import { getList as getProductList } from '@/api/product';
   import { SelectOption } from 'naive-ui/lib/select';
-  import { useRouter } from 'vue-router';
+  import { useRoute, useRouter } from 'vue-router';
   import { contractItemColumns, ContractItem, CreateContractCommand, PaymentType } from './datas';
   import { TableAction, BasicTable } from '@/components/Table';
   import contractItemForm from './contract-item-form.vue';
   import { PlusOutlined } from '@vicons/antd';
+  const route = useRoute();
   const loadingClient = ref(true);
   const loadingProduct = ref(false);
   const showCreateContractItemModal = ref(false);
   const createContractCommand = reactive<CreateContractCommand>({
-    clientId: '',
+    clientId: Number.isNaN(Number(route.query.clientId)) ? undefined : Number(route.query.clientId),
     isCombineFax: true,
     contractPayMethod: {
       paymentType: PaymentType.NoDeposit,
@@ -261,8 +248,13 @@
   const handleGoToClientCreate = () => {
     router.push({ name: 'client-list', query: { showCreate: 1 } });
   };
-  fetchClient();
-  fetchProduct();
+  onMounted(() => {
+    fetchClient();
+    fetchProduct();
+    // if (route.query.clientId) {
+    //   createContractCommand.clientId = route.query.clientId as string;
+    // }
+  });
 </script>
 
 <style lang="less" scoped></style>

@@ -84,20 +84,11 @@
   //   remark: null,
   // });
   const rules: FormRules = {
-    productType: {
+    productId: {
       required: true,
-      trigger: ['blur', 'input'],
-      message: '请选择产品类型',
-    },
-    name: {
-      required: true,
+      type: 'number',
       trigger: ['blur', 'change'],
-      message: '请输入名称',
-    },
-    specifications: {
-      required: true,
-      trigger: ['blur', 'change'],
-      message: '请输入规格型号',
+      message: '请选择产品',
     },
     amount: {
       required: true,
@@ -135,11 +126,6 @@
       required: true,
       trigger: ['blur', 'input'],
       message: '请输入材料型号',
-    },
-    technicalRequirements: {
-      required: true,
-      trigger: ['blur', 'input'],
-      message: '请输入技术要求',
     },
   };
   onMounted(() => {
