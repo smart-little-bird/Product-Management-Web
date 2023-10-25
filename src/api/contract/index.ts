@@ -10,12 +10,30 @@ export function create(params) {
   });
 }
 
-export function getPagedList(params) {
+export function update(id, params) {
   return http.request({
-    url: `/${controller}`,
-    method: 'get',
+    url: `/${controller}/${id}`,
+    method: 'post',
     params,
   });
+}
+
+export function getPagedList(params) {
+  return http
+    .request({
+      url: `/${controller}`,
+      method: 'get',
+      params,
+    })
+    .then((data) => {
+      return {
+        list: data?.contractListDtos,
+        page: data?.page?.pageIndex,
+        pageSize: data?.page?.pageSize,
+        total: data?.page?.total,
+        pageCount: data?.contractListDtos?.length,
+      };
+    });
 }
 
 export function get(id) {
@@ -28,6 +46,6 @@ export function get(id) {
 export function down(id) {
   return http.request({
     url: `/${controller}/${id}`,
-    method: 'put',
+    method: 'patch',
   });
 }

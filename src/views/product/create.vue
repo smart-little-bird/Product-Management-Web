@@ -94,12 +94,13 @@
   import { useRouter, useRoute } from 'vue-router';
   import { ProductItem, productItemColumns } from './datas';
   import { TableAction, BasicTable } from '@/components/Table';
-  import { FormRules, useMessage } from 'naive-ui';
+  import { FormRules, useDialog, useMessage } from 'naive-ui';
   import { create, getList, update } from '@/api/product';
 
   const router = useRouter();
   const route = useRoute();
   const message = useMessage();
+  const dialog = useDialog();
   const productId = route.query.productId;
   const isEdit = computed(() => productId !== undefined);
   const productFormRef = ref();
@@ -168,13 +169,31 @@
     showCreateProductItemModal.value = false;
     productFormRef.value.validate(async (errors) => {
       if (!errors) {
-        if (isEdit.value) {
-          await update(productInfo);
-        } else {
-          await create(productInfo);
+        if (
+          !productInfo.value.productListItemDtos ||
+          productInfo.value.productListItemDtos.length < 1
+        ) {
+          message.error('请添加产品项');
+          return;
         }
-        message.success(isEdit.value ? '编辑成功' : '新建成功');
-        router.push({ name: 'product-list' });
+        dialog.info({
+          title: '提示',
+          content: `确认提交吗?`,
+          positiveText: '确定',
+          negativeText: '取消',
+          onPositiveClick: async () => {
+            if (isEdit.value) {
+              await update(productInfo.value);
+            } else {
+              await create(productInfo.value);
+            }
+            message.success(isEdit.value ? '编辑成功' : '新建成功');
+            setTimeout(() => {
+              router.push({ name: 'product-list' });
+            }, 2000);
+          },
+          onNegativeClick: () => {},
+        });
       } else {
         message.error('操作失败');
       }

@@ -13,7 +13,7 @@ export interface ContractItem {
   productName: string;
   material: string;
   unit: string;
-  unitPrice: string;
+  unitPrice: number;
   amount: number;
   isIndependent: boolean;
   productId: number;
