@@ -1,1 +1,0 @@
-import{d3 as t}from"./index.5ad54f1d.js";const e="product";function s(r){return t.request({url:`/${e}`,method:"get",params:r})}function u(){return t.request({url:`/${e}/simple`,method:"get"})}export{s as a,u as g};
