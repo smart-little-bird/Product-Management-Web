@@ -14,7 +14,7 @@ export function update(id, params) {
   return http.request({
     url: `/${controller}/${id}`,
     method: 'post',
-    params,
+    params: { id: id, updateContractItemDtos: params },
   });
 }
 

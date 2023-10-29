@@ -1,6 +1,6 @@
 <template>
   <div>
-    <n-space v-show="loading" vertical :align="'center'">
+    <n-space v-if="loading" vertical :align="'center'">
       <n-spin size="large" />
     </n-space>
     <n-form
@@ -114,7 +114,7 @@
           :showToolBar="false"
         >
           <template #tableTitle>
-            <n-button type="primary" @click="showItemFormMadal">
+            <n-button type="primary" @click="showItemFormModal">
               <template #icon>
                 <n-icon>
                   <PlusOutlined />
@@ -175,7 +175,7 @@
   const { clientId } = route.query;
   const isEdit = computed(() => contractId !== undefined);
   const loadingClient = ref(true);
-  const loading = ref(isEdit.value ? true : false);
+  const loading = ref(isEdit.value ? false : false);
   const showCreateContractItemModal = ref(false);
 
   const selectClientOptions = ref<SelectOption[]>([]);
@@ -297,40 +297,44 @@
     router.push({ name: 'contract-list' });
   };
   const submitForm = async (e) => {
+    debugger;
     e.preventDefault();
-    if (!isEdit.value) {
-      contractFormRef.value.validate(async (errors) => {
-        if (!errors) {
-          if (!command.value.contractItems || command.value.contractItems.length < 1) {
-            message.error('请添加至少一条合同项');
-            return;
-          }
-          dialog.info({
-            title: '提示',
-            content: `确认提交吗?`,
-            positiveText: '确定',
-            negativeText: '取消',
-            onPositiveClick: async () => {
-              if (isEdit.value) {
-                await update(command.value.id, command.value.contractItems);
-              } else {
-                await create(command.value);
-              }
-              message.success('操作成功');
-              setTimeout(() => {
-                router.push({ name: 'contract-list' });
-              }, 2000);
-            },
-            onNegativeClick: () => {},
-          });
-        } else {
-          message.error('请填写完整信息');
+    // if (!isEdit.value) {
+    contractFormRef.value.validate(async (errors) => {
+      if (!errors) {
+        if (!command.value.contractItems || command.value.contractItems.length < 1) {
+          message.error('请添加至少一条合同项');
+          return;
         }
-      });
-    }
+        dialog.info({
+          title: '提示',
+          content: `确认提交吗?`,
+          positiveText: '确定',
+          negativeText: '取消',
+          onPositiveClick: async () => {
+            if (isEdit.value) {
+              await update(command.value.id, command.value.contractItems);
+            } else {
+              await create(command.value);
+            }
+            message.success('操作成功');
+            setTimeout(() => {
+              router.push({ name: 'contract-list' });
+            }, 2000);
+          },
+          onNegativeClick: () => {},
+        });
+      } else {
+        message.error('请填写完整信息');
+      }
+    });
+    // }
   };
-  const showItemFormMadal = () => {
+  const showItemFormModal = () => {
     showCreateContractItemModal.value = true;
+    debugger;
+    console.log(loading.value);
+    // loading.value = false;
     contractItem.value = {} as ContractItem;
   };
   const addContractItem = () => {
