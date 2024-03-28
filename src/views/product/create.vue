@@ -201,7 +201,7 @@
   };
   onMounted(() => {
     getList().then((d) => {
-      productInfoOrigin = d.filter((_) => _.id == productId)[0];
+      productInfoOrigin = d.filter((_) => _.id == productId)[0]??productInfoOrigin;
       productInfo.value = { ...productInfoOrigin };
       console.log(productInfo.value);
     });
