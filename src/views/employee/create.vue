@@ -1,4 +1,5 @@
 <template>
+  <div>
     <n-radio-group
       v-model:value="size"
       name="left-size"
@@ -110,8 +111,9 @@
       </div>
     </n-form>
   
-    <pre>{{ JSON.stringify(model, null, 2) }}
-  </pre>
+    <!-- <pre>{{ JSON.stringify(model, null, 2) }}
+  </pre> -->
+</div>
   </template>
   
   <script>

@@ -28,7 +28,7 @@ const routes: Array<RouteRecordRaw> = [
     children: [
       {
         path: 'list',
-        name: 'employee-list',
+        name: 'Employee_list',
         meta: {
           title: '职员列表',
         },
@@ -36,16 +36,16 @@ const routes: Array<RouteRecordRaw> = [
       },
       {
         path: 'create',
-        name: 'employee-create',
+        name: 'Employee_create',
         meta: {
           title: '职员新增',
         },
-        component: () => import('@/views/employee/detail/index.vue'),
+        component: () => import('@/views/employee/create.vue'),
       },
 
       {
         path: 'structure',
-        name: 'employee-structure',
+        name: 'Employee_structure',
         meta: {
           title: '职员架构',
           hidden: true,
