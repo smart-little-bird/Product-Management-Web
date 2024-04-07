@@ -186,6 +186,8 @@
   ]);
   const contractItem = ref({} as ContractItem);
   const contractFormRef = ref();
+  const date=new Date();
+  
   const command = ref<CreateContractCommand>({
     clientId: Number.isNaN(Number(route.query.clientId)) ? undefined : Number(route.query.clientId),
     isCombineFax: true,
@@ -196,7 +198,7 @@
     contractShippingInfo: {
       shipType: '快递',
       logisticsUndertaker: '',
-      shipDateTime: new Date().toLocaleDateString().replaceAll('/', '-'),
+      shipDateTime: date.getFullYear() + '-'+ (date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1) + '-'+(date.getDate() < 10 ? '0' + date.getDate() : date.getDate()),
     },
     contractItems: [],
   });

@@ -26,75 +26,57 @@
         maxWidth: '640px'
       }"
     >
-      <n-form-item label="职员姓名" path="inputValue">
-        <n-input v-model:value="model.inputValue" placeholder="Input" />
+      <n-form-item label="职员姓名" path="employeeName">
+        <n-input v-model:value="model.employeeName" placeholder="Input" />
       </n-form-item>
-      <n-form-item label="Textarea" path="textareaValue">
-        <n-input
-          v-model:value="model.textareaValue"
-          placeholder="Textarea"
-          type="textarea"
-          :autosize="{
-            minRows: 3,
-            maxRows: 5
-          }"
-        />
-      </n-form-item>
-      <n-form-item label="Select" path="selectValue">
-        <n-select
-          v-model:value="model.selectValue"
-          placeholder="Select"
-          :options="generalOptions"
-        />
-      </n-form-item>
-      <n-form-item label="Multiple Select" path="multipleSelectValue">
-        <n-select
-          v-model:value="model.multipleSelectValue"
-          placeholder="Select"
-          :options="generalOptions"
-          multiple
-        />
-      </n-form-item>
-      <!-- <n-form-item label="Datetime" path="datetimeValue">
-        <n-date-picker v-model:value="model.datetimeValue" type="datetime" />
-      </n-form-item> -->
-      <n-form-item label="Switch" path="switchValue">
-        <n-switch v-model:value="model.switchValue" />
-      </n-form-item>
-      <n-form-item label="Radio Group" path="radioGroupValue">
-        <n-radio-group v-model:value="model.radioGroupValue" name="radiogroup1">
+      <n-form-item label="职员工种" path="employeeType">
+        <n-radio-group v-model:value="model.employeeType" name="radiogroup1">
           <n-space>
-            <n-radio value="Radio 1">
-              Radio 1
+            <n-radio value="普车">
+              普车
             </n-radio>
-            <n-radio value="Radio 2">
-              Radio 2
+            <n-radio value="数控">
+              数控
             </n-radio>
-            <n-radio value="Radio 3">
-              Radio 3
+            <n-radio value="钳工">
+              钳工
+            </n-radio>
+            <n-radio value="焊工">
+              焊工
+            </n-radio>
+            <n-radio value="铣工">
+              铣工
+            </n-radio>
+            <n-radio value="质检">
+              质检
+            </n-radio>
+            <n-radio value="后勤">
+              后勤
             </n-radio>
           </n-space>
         </n-radio-group>
       </n-form-item>
-      <n-form-item label="Radio Button Group" path="radioGroupValue">
-        <n-radio-group v-model:value="model.radioGroupValue" name="radiogroup2">
-          <n-radio-button value="Radio 1">
-            Radio 1
-          </n-radio-button>
-          <n-radio-button value="Radio 2">
-            Radio 2
-          </n-radio-button>
-          <n-radio-button value="Radio 3">
-            Radio 3
-          </n-radio-button>
-        </n-radio-group>
+      <n-form-item label="职员技能" path="multipleSelectValue">
+        <n-select
+          v-model:value="model.multipleSelectValue"
+          placeholder="Select"
+          :options="generalSkills"
+          multiple
+        />
       </n-form-item>
-      <n-form-item label="Input Number" path="inputNumberValue">
+      <n-form-item label="入职时间" path="datetimeValue">
+        <n-date-picker v-model:value="model.datetimeValue" type="datetime" />
+      </n-form-item>
+      <n-form-item label="性别" path="switchValue">
+        <n-switch v-model:value="model.switchValue" />
+      </n-form-item>
+
+      <n-form-item label="工作年限" path="workingYear">
         <n-input-number v-model:value="model.inputNumberValue" />
       </n-form-item>
-      <!-- <n-form-item label="Time Picker" path="timePickerValue">
+      <n-form-item label="Time Picker" path="timePickerValue">
         <n-time-picker v-model:value="model.timePickerValue" />
-      </n-form-item> -->
+      </n-form-item>
       <n-form-item label="Slider" path="sliderValue">
         <n-slider v-model:value="model.sliderValue" :step="5" />
       </n-form-item>
@@ -144,8 +126,8 @@
         formRef,
         size: ref("medium"),
         model: ref({
-          inputValue: null,
-          textareaValue: null,
+          employeeName: null,
+          employeeType: null,
           selectValue: null,
           multipleSelectValue: null,
           datetimeValue: null,
@@ -157,12 +139,18 @@
           checkboxGroupValue: null,
           radioGroupValue: null,
           radioButtonGroupValue: null,
-          inputNumberValue: null,
+          workingYear: null,
           timePickerValue: null,
           sliderValue: 0,
           transferValue: null
         }),
-        generalOptions: ["车工", "钳工", "焊工", "铣工","杂工"].map(
+        generalOptions: ["普车","数控","钳工", "焊工", "铣工","质检","后勤"].map(
+          (v) => ({
+            label: v,
+            value: v
+          })
+        ),
+        generalSkills: ["车削","数控","精工", "焊接", "车铣","刨磨","质检"].map(
           (v) => ({
             label: v,
             value: v

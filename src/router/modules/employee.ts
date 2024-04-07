@@ -23,7 +23,7 @@ const routes: Array<RouteRecordRaw> = [
     meta: {
       title: '职员管理',
       icon: renderIcon(EarthOutline),
-      sort: 2,
+      sort: 3,
     },
     children: [
       {
@@ -35,22 +35,22 @@ const routes: Array<RouteRecordRaw> = [
         component: () => import('@/views/employee/index.vue'),
       },
       {
+        path: 'create',
+        name: 'employee-create',
+        meta: {
+          title: '职员新增',
+        },
+        component: () => import('@/views/employee/detail/index.vue'),
+      },
+
+      {
         path: 'structure',
         name: 'employee-structure',
         meta: {
           title: '职员架构',
+          hidden: true,
         },
         component: () => import('@/views/employee/structure/index.vue'),
-      },
-      {
-        path: 'detail',
-        name: 'employee-detail',
-        meta: {
-          title: '职员详情',
-          // hidden: true,
-          activeMenu: 'employee-detail',
-        },
-        component: () => import('@/views/employee/detail/index.vue'),
       },
     ],
   },
