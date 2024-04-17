@@ -131,8 +131,8 @@
     &-container {
       flex: 1;
       padding: 32px 12px;
-      max-width: 384px;
-      min-width: 320px;
+      max-width: 584px;
+      min-width: 420px;
       margin: 0 auto;
       transform: translateY(-25%);
     }
@@ -147,7 +147,7 @@
         margin: 0 auto;
       }
       &-desc {
-        font-size: 24px;
+        font-size: 48px;
         font-weight: bold;
         color: #808695;
       }
@@ -168,14 +168,14 @@
 
   @media (min-width: 768px) {
     .view-account {
-      background-image: url('../../assets/images/login.svg');
+      background-image: url('../../assets/images/scene.png');
       background-repeat: no-repeat;
-      background-position: 50%;
+      background-position: 60%;
       background-size: 100%;
     }
 
     .page-account-container {
-      padding: 32px 0 24px 0;
+      padding: 42px 0 36px 0;
     }
   }
 </style>

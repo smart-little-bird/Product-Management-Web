@@ -110,11 +110,8 @@
         </n-button>
       </div>
     </n-form>
-  
-    <!-- <pre>{{ JSON.stringify(model, null, 2) }}
-  </pre> -->
 </div>
-  </template>
+</template>
   
   <script>
   import { defineComponent, ref } from "vue";
