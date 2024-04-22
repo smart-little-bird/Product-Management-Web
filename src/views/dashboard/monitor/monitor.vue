@@ -1,7 +1,24 @@
 <template>
-  <div>监控台</div>
+  <vue-office-pdf :src="pdf" @rendered="rendered"/>
 </template>
 
-<script lang="ts" setup></script>
+<script>
+//引入VueOfficePdf组件
+import VueOfficePdf from '@vue-office/pdf'
 
-<style lang="less" scoped></style>
+export default {
+  components:{
+    VueOfficePdf
+  },
+  data(){
+    return {
+      pdf: 'http://static.shanhuxueyuan.com/test.pdf' //设置文档地址
+    }
+  },
+  methods:{
+    rendered(){
+      console.log("渲染完成")
+    }
+  }
+}
+</script>

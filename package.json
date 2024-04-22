@@ -30,6 +30,7 @@
   "dependencies": {
     "@vicons/antd": "^0.12.0",
     "@vicons/ionicons5": "^0.12.0",
+    "@vue-office/pdf": "^2.0.2",
     "@vueup/vue-quill": "^1.2.0",
     "@vueuse/core": "^9.13.0",
     "axios": "^1.4.0",
@@ -41,12 +42,18 @@
     "mitt": "^3.0.1",
     "mockjs": "^1.1.0",
     "naive-ui": "^2.34.4",
+    "pdfjs-dist": "^2.16.105",
     "pinia": "^2.1.6",
     "qs": "^6.11.2",
     "vfonts": "^0.0.3",
     "vue": "^3.3.4",
+    "vue-pdf": "^4.3.0",
+    "vue-pdf-embed": "^2.0.3",
+    "vue-pdf-signature": "^4.2.7",
     "vue-router": "^4.2.4",
-    "vue-types": "^4.2.1"
+    "vue-types": "^4.2.1",
+    "vue3-pdf-app": "^1.0.3",
+    "vue3-pdfjs": "^0.1.6"
   },
   "devDependencies": {
     "@commitlint/cli": "^17.7.0",
@@ -94,7 +101,7 @@
     "vite-plugin-html": "^3.2.0",
     "vite-plugin-mock": "^2.9.8",
     "vite-plugin-style-import": "^2.0.0",
-    "vue-demi": "^0.13.11",
+    "vue-demi": "^0.14.6",
     "vue-draggable-next": "^2.2.1",
     "vue-eslint-parser": "^9.3.1",
     "vuedraggable": "^4.1.0"
