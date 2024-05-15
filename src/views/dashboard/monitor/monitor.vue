@@ -12,7 +12,7 @@ export default {
   },
   data(){
     return {
-      pdf: 'http://static.shanhuxueyuan.com/test.pdf' //设置文档地址
+      pdf: '/StaticFiles/12.pdf' //设置文档地址
     }
   },
   methods:{
