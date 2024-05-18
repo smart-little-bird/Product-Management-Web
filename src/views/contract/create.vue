@@ -216,7 +216,6 @@
         message: '请输入物流承担方',
       },
       shipDateTime: {
-        //type: 'number',
         required: true,
         trigger: ['blur', 'change'],
         message: '请输入交货时间',
@@ -301,7 +300,6 @@
   const submitForm = async (e) => {
     debugger;
     e.preventDefault();
-    // if (!isEdit.value) {
     contractFormRef.value.validate(async (errors) => {
       if (!errors) {
         if (!command.value.contractItems || command.value.contractItems.length < 1) {
@@ -330,13 +328,11 @@
         message.error('请填写完整信息');
       }
     });
-    // }
   };
   const showItemFormModal = () => {
     showCreateContractItemModal.value = true;
     debugger;
     console.log(loading.value);
-    // loading.value = false;
     contractItem.value = {} as ContractItem;
   };
   const addContractItem = () => {

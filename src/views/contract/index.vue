@@ -72,6 +72,10 @@
             onClick: handleEdit.bind(null, record),
           },
           {
+            label: '预览',
+            onClick: handlePreview.bind(null, record),
+          },
+          {
             label: '完成',
             type: 'success',
             onClick: handleDown.bind(null, record),
@@ -94,12 +98,18 @@
   }
 
   function handleShowDetail(record: Recordable) {
-    console.log('点击了查看详情', record);
     showDetailModal.value = true;
     showDetailContractId.value = record.id;
   }
   function handleEdit(record: Recordable) {
     router.push({ name: 'contract-create', query: { contractId: record.id } });
+  }
+
+  function handlePreview(record: Recordable) {
+    
+    console.log('点击了删除', record);
+ 
+    router.push({ name: 'contract-preview', query: { contractId:"01" } });
   }
 
   function handleDown(record: Recordable) {

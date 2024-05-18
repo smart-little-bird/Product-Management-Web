@@ -102,17 +102,14 @@
   }
 
   function handleShowDetail(record: Recordable) {
-    console.log('点击了查看详情', record);
     showDetailModal.value = true;
     showDetailProduct.product = toRaw(record) as ProductList;
   }
   function handleEdit(record: Recordable) {
-    console.log('点击了编辑', record);
     router.push({ name: 'product-create', query: { productId: record.id } });
   }
 
   function handleDelete(record: Recordable) {
-    console.log('点击了删除', record);
     dialog.error({
       title: '提示',
       content: `您想删除 【${record.description}】`,

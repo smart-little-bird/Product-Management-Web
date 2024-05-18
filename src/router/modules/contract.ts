@@ -38,9 +38,18 @@ const routes: Array<RouteRecordRaw> = [
         path: 'create',
         name: 'contract-create',
         meta: {
-          title: '合同编辑',
+          title: '合同创建',
         },
         component: () => import('@/views/contract/create.vue'),
+      },
+      {
+        path: 'preview',
+        name: 'contract-preview',
+        meta: {
+          title: '合同预览',
+          hidden: true,
+        },
+        component: () => import('@/views/contract/preview.vue')
       },
     ],
   },

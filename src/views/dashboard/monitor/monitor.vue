@@ -6,13 +6,14 @@
 //引入VueOfficePdf组件
 import VueOfficePdf from '@vue-office/pdf'
 
+
 export default {
   components:{
     VueOfficePdf
   },
   data(){
     return {
-      pdf: '/StaticFiles/12.pdf' //设置文档地址
+      pdf: '/StaticFiles/11.pdf' //设置文档地址
     }
   },
   methods:{

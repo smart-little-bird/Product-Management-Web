@@ -45,7 +45,7 @@ export function update(params) {
 
 export function remove(id) {
   return http.request({
-    url: `/client/${id}`,
+    url: `/${controller}/${id}`,
     method: 'delete',
   });
 }
