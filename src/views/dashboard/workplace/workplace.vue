@@ -53,12 +53,12 @@
                     <GithubOutlined />
                   </n-icon>
                 </span>
-                <span class="ml-4 text-lg">Github</span>
+                <span class="ml-4 text-lg">紧急任务</span>
               </div>
               <div class="flex h-10 mt-2 text-gray-400">
-                是一个面向开源及私有软件项目的托管平台。
+                是一个面向工厂管理的生产托管平台。
               </div>
-              <div class="flex h-10 mt-2 text-gray-400"> 开源君，2021-07-04 </div>
+              <div class="flex h-10 mt-2 text-gray-400"> 季慧根，2021-07-04 </div>
             </n-card>
             <n-card
               size="small"
@@ -71,7 +71,7 @@
                     <LogoVue />
                   </n-icon>
                 </span>
-                <span class="ml-4 text-lg">Vue</span>
+                <span class="ml-4 text-lg">库存告急</span>
               </div>
               <div class="flex h-10 mt-2 text-gray-400"> 渐进式 JavaScript 框架 </div>
               <div class="flex h-10 mt-2 text-gray-400"> 学不动也要学，2021-07-04 </div>
@@ -87,7 +87,7 @@
                     <Html5Outlined />
                   </n-icon>
                 </span>
-                <span class="ml-4 text-lg">Html5</span>
+                <span class="ml-4 text-lg">生产预警</span>
               </div>
               <div class="flex h-10 mt-2 text-gray-400"> HTML5是互联网的下一代标准。 </div>
               <div class="flex h-10 mt-2 text-gray-400"> 撸码也是一种艺术 2021-04-01 </div>
@@ -103,7 +103,7 @@
                     <LogoAngular />
                   </n-icon>
                 </span>
-                <span class="ml-4 text-lg">Angular</span>
+                <span class="ml-4 text-lg">订单告急</span>
               </div>
               <div class="flex h-10 mt-2 text-gray-400"> 现代 Web 开发平台，百万粉丝热捧。 </div>
               <div class="flex h-10 mt-2 text-gray-400"> 铁粉君 2021-07-04。 </div>
@@ -119,12 +119,12 @@
                     <LogoReact />
                   </n-icon>
                 </span>
-                <span class="ml-4 text-lg">React</span>
+                <span class="ml-4 text-lg">人力不足</span>
               </div>
               <div class="flex h-10 mt-2 text-gray-400"> 用于构建用户界面的 JavaScript 库。 </div>
               <div class="flex h-10 mt-2 text-gray-400"> 技术牛 2021-07-04。 </div>
             </n-card>
-            <n-card
+            <!-- <n-card
               size="small"
               class="cursor-pointer project-card-item ms:w-1/2 md:w-1/3"
               hoverable
@@ -136,10 +136,10 @@
                   </n-icon>
                 </span>
                 <span class="ml-4 text-lg">Js</span>
-              </div>
-              <div class="flex h-10 mt-2 text-gray-400"> 路是走出来的，而不是空想出来的。 </div>
+              </div> -->
+              <!-- <div class="flex h-10 mt-2 text-gray-400"> 路是走出来的，而不是空想出来的。 </div>
               <div class="flex h-10 mt-2 text-gray-400"> 架构组 2021-07-04 </div>
-            </n-card>
+            </n-card> -->
           </div>
         </n-card>
 

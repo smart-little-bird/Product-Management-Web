@@ -13,7 +13,7 @@ import { h, defineComponent, onMounted, ref } from 'vue'
 import { NButton, useMessage } from 'naive-ui'
 import type { DataTableColumns } from 'naive-ui'
 import { EmployeeList } from './datas';
-import { getList } from '@/api/employee'
+import { getList,remove } from '@/api/employee'
 
 const createColumns = ({
   play
@@ -79,9 +79,14 @@ const createColumns = ({
             strong: true,
             tertiary: true,
             size: 'small',
-            onClick: () => play(row)
+            onClick:async () =>{
+              await remove(row.employeeId)
+              setTimeout(() => {
+                onMounted()
+                }, 2000);
+            } 
           },
-          { default: () => 'Play' }
+          { default: () => '离职' }
         )
     }
   }
@@ -105,7 +110,10 @@ export default defineComponent({
       data:  dataRef,
       columns: createColumns({
         play (row: EmployeeList) {
+     
           message.info(`Play ${row.employeeId}`)
+
+
         }
       }),
       pagination: false as const

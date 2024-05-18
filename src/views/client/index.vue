@@ -419,14 +419,7 @@
     });
   }
 
-  // function handleSubmit(values: Recordable) {
-  //   console.log(values);
-  //   reloadTable();
-  // }
 
-  // function handleReset(values: Recordable) {
-  //   console.log(values);
-  // }
   onMounted(() => {
     showModal.value = Number(showCreate) == 1;
   });

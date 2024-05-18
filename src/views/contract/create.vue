@@ -65,10 +65,12 @@
           path="contractShippingInfo.logisticsUndertaker"
           v-if="!isEdit"
         >
-          <n-input
+          <n-select
             style="width: 200px"
-            placeholder="请输入物流承担方"
             v-model:value="command.contractShippingInfo.logisticsUndertaker"
+            placeholder="请输入物流承担方"
+            :options="selectlogisticsUndertakerOptions"
+            clearable
           />
         </n-form-item>
         <n-form-item label="支付方式" path="contractPayMethod.paymentType" v-if="!isEdit">
@@ -183,6 +185,10 @@
     { label: '无定金', value: 0 },
     { label: '有定金', value: 1 },
     { label: '全款', value: 2 },
+  ]);
+  const selectlogisticsUndertakerOptions = ref<SelectOption[]>([
+    { label: '甲方', value: "甲" },
+    { label: '乙方', value: "乙" },
   ]);
   const contractItem = ref({} as ContractItem);
   const contractFormRef = ref();
@@ -319,7 +325,7 @@
             }
             message.success('操作成功');
             setTimeout(() => {
-              router.push({ name: 'contract-list' });
+              router.push({ name: 'Employee_list' });
             }, 2000);
           },
           onNegativeClick: () => {},

@@ -7,7 +7,7 @@
             <n-tab-pane name="流量趋势">
               <FluxTrend />
             </n-tab-pane>
-            <n-tab-pane name="访问量">
+            <n-tab-pane name="订单量">
               <VisitAmount />
             </n-tab-pane>
           </n-tabs>

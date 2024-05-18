@@ -35,9 +35,6 @@ export async function create(createClientCommand) {
       method: 'post',
       params: createClientCommand,
     }
-    // {
-    //   isTransformResponse: false,
-    // }
   );
 }
 

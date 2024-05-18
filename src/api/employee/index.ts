@@ -13,15 +13,15 @@ export async function getList() {
   return response;
 }
 
-// export async function create(createEmployeeCommand:CreateEmployeeCommand) {
-//   return await http.request(
-//     {
-//       url: `/${controller}`,
-//       method: 'post',
-//       params: createEmployeeCommand,
-//     }
-//   );
-// }
+export async function create(createEmployeeCommand) {
+  return await http.request(
+    {
+      url: `/${controller}`,
+      method: 'post',
+      params: createEmployeeCommand,
+    }
+  );
+}
 
 export function remove(id) {
   return http.request({
